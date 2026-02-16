@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { Suspense, useState, useMemo } from 'react';
 import { meals } from '@/constants/meals';
 import { siteConfig } from '@/constants/siteConfig';
 import { toast } from 'sonner';
@@ -14,6 +14,14 @@ const timeSlots = [
 ];
 
 const OrderPage = () => {
+  return (
+    <Suspense>
+      <OrderPageContent />
+    </Suspense>
+  );
+};
+
+const OrderPageContent = () => {
   const searchParams = useSearchParams();
   const preselected = searchParams.get('meal');
 

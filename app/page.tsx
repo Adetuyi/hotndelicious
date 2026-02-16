@@ -1,3 +1,5 @@
+'use client';
+
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { UtensilsCrossed, Truck, ClipboardList, Phone, Mail, MessageCircle } from 'lucide-react';
