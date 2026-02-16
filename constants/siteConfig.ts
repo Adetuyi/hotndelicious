@@ -30,10 +30,10 @@ export const siteConfig = {
 };
 
 export type MealItem = {
-  id: string;
+  id: string | number;
   name: string;
   description: string;
   price: number;
   image: string | StaticImageData;
-  category: 'rice' | 'soup' | 'grill' | 'sides' | 'party';
+  category: 'rice' | 'soup' | 'grill' | 'sides' | 'party' | string;
 };

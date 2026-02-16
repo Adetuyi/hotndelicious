@@ -1,4 +1,6 @@
-export const menuItems = [
+import { MealItem } from '@/constants/siteConfig';
+
+export const menuItems: MealItem[] = [
   {
     id: 1,
     name: 'Jollof Rice',
