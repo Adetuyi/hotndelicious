@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import type { MealItem } from "@/constants/siteConfig";
+import Link from 'next/link';
+import type { MealItem } from '@/constants/siteConfig';
+import Image from 'next/image';
 
 interface MealCardProps {
   meal: MealItem;
@@ -8,31 +9,29 @@ interface MealCardProps {
 
 const MealCard = ({ meal, showOrder = true }: MealCardProps) => {
   return (
-    <div className="group bg-card rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 border border-border">
+    <div className="group bg-card border-border overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg">
       <div className="aspect-square overflow-hidden">
-        <img
+        <Image
           src={meal.image}
           alt={meal.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
       </div>
       <div className="p-4 md:p-5">
-        <div className="flex items-start justify-between gap-2 mb-2">
-          <h3 className="font-display font-semibold text-lg leading-tight text-foreground">
+        <div className="mb-2 flex items-start justify-between gap-2">
+          <h3 className="font-display text-foreground text-lg leading-tight font-semibold">
             {meal.name}
           </h3>
-          <span className="font-body font-bold text-primary text-lg whitespace-nowrap">
+          <span className="font-body text-primary text-lg font-bold whitespace-nowrap">
             £{meal.price}
           </span>
         </div>
-        <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-          {meal.description}
-        </p>
+        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">{meal.description}</p>
         {showOrder && (
           <Link
-            to={`/order?meal=${meal.id}`}
-            className="inline-block bg-gradient-warm text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold hover:opacity-90 transition-opacity w-full text-center"
+            href={`/order?meal=${meal.id}`}
+            className="bg-gradient-warm text-primary-foreground inline-block w-full rounded-lg px-4 py-2 text-center text-sm font-semibold transition-opacity hover:opacity-90"
           >
             Order This
           </Link>

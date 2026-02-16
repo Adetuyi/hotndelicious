@@ -1,48 +1,49 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
-import { siteConfig } from "@/constants/siteConfig";
-import { motion, AnimatePresence } from "framer-motion";
+'use client';
+
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { siteConfig } from '@/constants/siteConfig';
+import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { label: "Home", path: "/" },
-  { label: "Menu", path: "/menu" },
-  { label: "Order", path: "/order" },
-  { label: "Contact", path: "/contact" },
+  { label: 'Home', path: '/' },
+  { label: 'Menu', path: '/menu' },
+  { label: 'Order', path: '/order' },
+  { label: 'Contact', path: '/contact' },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const location = useLocation();
+  const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 bg-card/95 backdrop-blur-md border-b border-border">
-      <div className="container flex items-center justify-between h-16 md:h-20">
-        <Link to="/" className="flex items-center gap-2">
+    <header className="bg-card/95 border-border sticky top-0 z-50 border-b backdrop-blur-md">
+      <div className="container flex h-16 items-center justify-between md:h-20">
+        <Link href="/" className="flex items-center gap-2">
           <span className="text-2xl md:text-3xl">🔥</span>
-          <span className="font-display text-xl md:text-2xl font-bold text-gradient-warm">
+          <span className="font-display text-gradient-warm text-xl font-bold md:text-2xl">
             {siteConfig.name}
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
+        <nav className="hidden items-center gap-8 md:flex">
+          {navItems.map(item => (
             <Link
               key={item.path}
-              to={item.path}
-              className={`font-body font-medium text-sm transition-colors hover:text-primary ${
-                location.pathname === item.path
-                  ? "text-primary"
-                  : "text-foreground/70"
+              href={item.path}
+              className={`font-body hover:text-primary text-sm font-medium transition-colors ${
+                pathname === item.path ? 'text-primary' : 'text-foreground/70'
               }`}
             >
               {item.label}
             </Link>
           ))}
           <Link
-            to="/order"
-            className="bg-gradient-warm text-primary-foreground px-5 py-2.5 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity"
+            href="/order"
+            className="bg-gradient-warm text-primary-foreground rounded-lg px-5 py-2.5 text-sm font-semibold transition-opacity hover:opacity-90"
           >
             Order Now
           </Link>
@@ -50,7 +51,7 @@ const Header = () => {
 
         {/* Mobile toggle */}
         <button
-          className="md:hidden p-2 text-foreground"
+          className="text-foreground p-2 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
@@ -63,29 +64,27 @@ const Header = () => {
         {mobileOpen && (
           <motion.nav
             initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
+            animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden overflow-hidden bg-card border-b border-border"
+            className="bg-card border-border overflow-hidden border-b md:hidden"
           >
-            <div className="container py-4 flex flex-col gap-3">
-              {navItems.map((item) => (
+            <div className="container flex flex-col gap-3 py-4">
+              {navItems.map(item => (
                 <Link
                   key={item.path}
-                  to={item.path}
+                  href={item.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`font-body font-medium py-2 transition-colors ${
-                    location.pathname === item.path
-                      ? "text-primary"
-                      : "text-foreground/70"
+                  className={`font-body py-2 font-medium transition-colors ${
+                    pathname === item.path ? 'text-primary' : 'text-foreground/70'
                   }`}
                 >
                   {item.label}
                 </Link>
               ))}
               <Link
-                to="/order"
+                href="/order"
                 onClick={() => setMobileOpen(false)}
-                className="bg-gradient-warm text-primary-foreground px-5 py-3 rounded-lg font-semibold text-center hover:opacity-90 transition-opacity"
+                className="bg-gradient-warm text-primary-foreground rounded-lg px-5 py-3 text-center font-semibold transition-opacity hover:opacity-90"
               >
                 Order Now
               </Link>

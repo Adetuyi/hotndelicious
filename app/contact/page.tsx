@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import { siteConfig } from '@/constants/siteConfig';
 import { Phone, Mail, MessageCircle, MapPin } from 'lucide-react';

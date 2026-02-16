@@ -1,37 +1,35 @@
-import { Link } from "react-router-dom";
-import { siteConfig } from "@/constants/siteConfig";
-import { Phone, Mail, MapPin } from "lucide-react";
+import Link from 'next/link';
+import { siteConfig } from '@/constants/siteConfig';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
       <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-2 mb-4">
+            <div className="mb-4 flex items-center gap-2">
               <span className="text-2xl">🔥</span>
               <span className="font-display text-xl font-bold">{siteConfig.name}</span>
             </div>
-            <p className="text-background/70 text-sm leading-relaxed">
-              {siteConfig.tagline}
-            </p>
+            <p className="text-background/70 text-sm leading-relaxed">{siteConfig.tagline}</p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-display mb-4 text-lg font-semibold">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { label: "Home", path: "/" },
-                { label: "Menu", path: "/menu" },
-                { label: "Order", path: "/order" },
-                { label: "Contact", path: "/contact" },
-              ].map((item) => (
+                { label: 'Home', path: '/' },
+                { label: 'Menu', path: '/menu' },
+                { label: 'Order', path: '/order' },
+                { label: 'Contact', path: '/contact' },
+              ].map(item => (
                 <li key={item.path}>
                   <Link
-                    to={item.path}
-                    className="text-background/70 hover:text-primary transition-colors text-sm"
+                    href={item.path}
+                    className="text-background/70 hover:text-primary text-sm transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -42,17 +40,23 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">Contact Us</h4>
+            <h4 className="font-display mb-4 text-lg font-semibold">Contact Us</h4>
             <ul className="space-y-3">
-              <li className="flex items-center gap-2 text-sm text-background/70">
-                <Phone size={16} className="text-primary flex-shrink-0" />
-                <a href={`tel:${siteConfig.contact.phone}`} className="hover:text-primary transition-colors">
+              <li className="text-background/70 flex items-center gap-2 text-sm">
+                <Phone size={16} className="text-primary shrink-0" />
+                <a
+                  href={`tel:${siteConfig.contact.phone}`}
+                  className="hover:text-primary transition-colors"
+                >
                   {siteConfig.contact.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-sm text-background/70">
-                <Mail size={16} className="text-primary flex-shrink-0" />
-                <a href={`mailto:${siteConfig.contact.email}`} className="hover:text-primary transition-colors">
+              <li className="text-background/70 flex items-center gap-2 text-sm">
+                <Mail size={16} className="text-primary shrink-0" />
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="hover:text-primary transition-colors"
+                >
                   {siteConfig.contact.email}
                 </a>
               </li>
@@ -61,15 +65,15 @@ const Footer = () => {
 
           {/* Delivery */}
           <div>
-            <h4 className="font-display font-semibold text-lg mb-4">Delivery Areas</h4>
-            <div className="flex items-start gap-2 text-sm text-background/70">
-              <MapPin size={16} className="text-primary flex-shrink-0 mt-0.5" />
-              <span>{siteConfig.delivery.areas.join(", ")}</span>
+            <h4 className="font-display mb-4 text-lg font-semibold">Delivery Areas</h4>
+            <div className="text-background/70 flex items-start gap-2 text-sm">
+              <MapPin size={16} className="text-primary mt-0.5 shrink-0" />
+              <span>{siteConfig.delivery.areas.join(', ')}</span>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-background/10 mt-10 pt-6 text-center text-background/50 text-sm">
+        <div className="border-background/10 text-background/50 mt-10 border-t pt-6 text-center text-sm">
           © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
         </div>
       </div>
