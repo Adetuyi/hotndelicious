@@ -30,7 +30,7 @@ export const siteConfig = {
 };
 
 export type MealItem = {
-  id: string | number;
+  id: string;
   name: string;
   description: string;
   price: number;
