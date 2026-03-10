@@ -1,16 +1,16 @@
 import { StaticImageData } from 'next/image';
 
 export const siteConfig = {
-  name: 'HotnDelicious',
+  name: 'HotnNiceDelicacies',
   tagline: 'Authentic Nigerian Meals, Delivered to Your Door',
-  domain: 'hotndelicious.com',
+  domain: 'hotnnicedelicacies.com',
   description:
     'Authentic Nigerian home-cooked meals delivered fresh to your door in Middlesbrough and surrounding areas.',
   contact: {
-    email: 'info@hotndelicious.com',
-    phone: '+44 7XXX XXXXXX',
-    whatsapp: '+447XXXXXXXXX',
-    whatsappDisplay: '+44 7XXX XXXXXX',
+    email: 'hotnnicedelicacies@gmail.com',
+    phone: '+44 7776 320068',
+    whatsapp: '+447776320068',
+    whatsappDisplay: '+44 7776 320068',
   },
   delivery: {
     areas: ['Middlesbrough', 'Stockton-on-Tees', 'Redcar', 'Thornaby', 'Billingham'],
@@ -20,8 +20,8 @@ export const siteConfig = {
     },
   },
   social: {
-    instagram: 'https://instagram.com/hotndelicious',
-    facebook: 'https://facebook.com/hotndelicious',
+    instagram: 'https://instagram.com/hotnnicedelicacies',
+    facebook: 'https://facebook.com/hotnnicedelicacies',
   },
   hours: {
     delivery: '12pm - 8pm, Tuesday - Sunday',
