@@ -1,17 +1,17 @@
 import Link from 'next/link';
 import { siteConfig } from '@/constants/siteConfig';
 import { Phone, Mail, MapPin } from 'lucide-react';
+import LogoStacked from './LogoStacked';
 
 const Footer = () => {
   return (
     <footer className="bg-foreground text-background">
-      <div className="container py-12 md:py-16">
+      <div className="container px-4 py-12 md:py-16">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
             <div className="mb-4 flex items-center gap-2">
-              <span className="text-2xl">🔥</span>
-              <span className="font-display text-xl font-bold">{siteConfig.name}</span>
+              <LogoStacked variant="light" className="h-12 w-auto" />
             </div>
             <p className="text-background/70 text-sm leading-relaxed">{siteConfig.tagline}</p>
           </div>

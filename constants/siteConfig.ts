@@ -2,10 +2,10 @@ import { StaticImageData } from 'next/image';
 
 export const siteConfig = {
   name: 'HotnNiceDelicacies',
-  tagline: 'Authentic Nigerian Meals, Delivered to Your Door',
+  tagline: 'Fresh Home-Cooked Meals, Delivered to Your Door',
   domain: 'hotnnicedelicacies.com',
   description:
-    'Authentic Nigerian home-cooked meals delivered fresh to your door in Middlesbrough and surrounding areas.',
+    'Fresh home-cooked meals made from scratch and delivered hot to your door in Middlesbrough and surrounding areas.',
   contact: {
     email: 'hotnnicedelicacies@gmail.com',
     phone: '+44 7776 320068',

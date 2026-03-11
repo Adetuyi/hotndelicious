@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { siteConfig } from '@/constants/siteConfig';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import LogoStacked from './LogoStacked';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -20,12 +20,9 @@ const Header = () => {
 
   return (
     <header className="bg-card/95 border-border sticky top-0 z-50 border-b backdrop-blur-md">
-      <div className="container flex h-16 items-center justify-between md:h-20">
+      <div className="container flex h-16 items-center justify-between px-4 md:h-20">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-2xl md:text-3xl">🔥</span>
-          <span className="font-display text-gradient-warm text-xl font-bold md:text-2xl">
-            {siteConfig.name}
-          </span>
+          <LogoStacked className="h-12 w-auto" />
         </Link>
 
         {/* Desktop nav */}
@@ -68,7 +65,7 @@ const Header = () => {
             exit={{ height: 0, opacity: 0 }}
             className="bg-card border-border overflow-hidden border-b md:hidden"
           >
-            <div className="container flex flex-col gap-3 py-4">
+            <div className="container flex flex-col gap-3 px-4 py-4">
               {navItems.map(item => (
                 <Link
                   key={item.path}

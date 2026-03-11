@@ -27,14 +27,14 @@ const ContactPage = () => {
 
   return (
     <section className="bg-background py-16 md:py-24">
-      <div className="container max-w-5xl">
+      <div className="container max-w-5xl px-4">
         <div className="mb-12 text-center">
           <h1 className="font-display text-foreground mb-4 text-4xl font-bold md:text-5xl">
             Get In Touch
           </h1>
           <p className="text-muted-foreground mx-auto max-w-xl text-lg">
-            Got a question, special request, or just want to chat about Nigerian food? We&apos;d
-            love to hear from you!
+            Got a question, special request, or just want to chat about our food? We&apos;d love to
+            hear from you!
           </p>
         </div>
 

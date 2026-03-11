@@ -10,7 +10,7 @@ interface MealCardProps {
 const MealCard = ({ meal, showOrder = true }: MealCardProps) => {
   return (
     <div className="group bg-card border-border overflow-hidden rounded-xl border shadow-sm transition-all duration-300 hover:shadow-lg">
-      <div className="aspect-square overflow-hidden">
+      <div className="aspect-square max-h-89 w-full overflow-hidden">
         <Image
           src={meal.image}
           alt={meal.name}

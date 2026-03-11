@@ -90,7 +90,7 @@ const OrderPageContent = () => {
 
   return (
     <section className="bg-background py-16 md:py-24">
-      <div className="container max-w-3xl">
+      <div className="container max-w-3xl px-4">
         <div className="mb-10 text-center">
           <h1 className="font-display text-foreground mb-4 text-4xl font-bold md:text-5xl">
             Place Your Order
@@ -102,137 +102,210 @@ const OrderPageContent = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          {/* Meal Selection */}
-          <div>
-            <h2 className="font-display text-foreground mb-4 text-xl font-semibold">
-              Select Your Meals
-            </h2>
-            <div className="space-y-3">
-              {meals.map(meal => {
-                const isSelected = !!selectedMeals[meal.id];
-                return (
-                  <div
-                    key={meal.id}
-                    className={`flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition-all ${
-                      isSelected
-                        ? 'border-primary bg-primary/5'
-                        : 'border-border bg-card hover:border-primary/30'
-                    }`}
-                    onClick={() => toggleMeal(meal.id)}
-                  >
-                    <Image
-                      src={meal.image}
-                      alt={meal.name}
-                      className="h-14 w-14 shrink-0 rounded-lg object-cover"
-                    />
-                    <div className="min-w-0 flex-1">
-                      <h3 className="text-foreground text-sm font-semibold">{meal.name}</h3>
-                      <p className="text-muted-foreground truncate text-xs">{meal.description}</p>
-                    </div>
-                    <span className="text-primary text-sm font-bold whitespace-nowrap">
-                      £{meal.price}
-                    </span>
-                    {isSelected && (
-                      <div className="flex items-center gap-2" onClick={e => e.stopPropagation()}>
-                        <button
-                          type="button"
-                          onClick={() => updateQty(meal.id, selectedMeals[meal.id] - 1)}
-                          className="bg-muted text-foreground flex h-7 w-7 items-center justify-center rounded-md text-sm font-bold"
-                        >
-                          −
-                        </button>
-                        <span className="text-foreground w-6 text-center text-sm font-semibold">
-                          {selectedMeals[meal.id]}
-                        </span>
-                        <button
-                          type="button"
-                          onClick={() => updateQty(meal.id, selectedMeals[meal.id] + 1)}
-                          className="bg-muted text-foreground flex h-7 w-7 items-center justify-center rounded-md text-sm font-bold"
-                        >
-                          +
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-            {total > 0 && (
-              <div className="font-display text-primary mt-4 text-right text-xl font-bold">
-                Subtotal: £{total}
-              </div>
-            )}
-          </div>
-
           {/* Personal Info */}
-          <div className="space-y-4">
-            <h2 className="font-display text-foreground text-xl font-semibold">Your Details</h2>
-            <input
-              required
-              placeholder="Full Name *"
-              className={inputClass}
-              value={form.name}
-              onChange={e => setForm({ ...form, name: e.target.value })}
-            />
-            <input
-              required
-              type="tel"
-              placeholder="Phone Number *"
-              className={inputClass}
-              value={form.phone}
-              onChange={e => setForm({ ...form, phone: e.target.value })}
-            />
-            <input
-              required
-              type="email"
-              placeholder="Email Address *"
-              className={inputClass}
-              value={form.email}
-              onChange={e => setForm({ ...form, email: e.target.value })}
-            />
-            <input
-              required
-              placeholder="Delivery Address *"
-              className={inputClass}
-              value={form.address}
-              onChange={e => setForm({ ...form, address: e.target.value })}
-            />
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <input
-                required
-                type="date"
-                className={inputClass}
-                value={form.deliveryDate}
-                onChange={e => setForm({ ...form, deliveryDate: e.target.value })}
-              />
-              <select
-                required
-                className={inputClass}
-                value={form.deliveryTime}
-                onChange={e => setForm({ ...form, deliveryTime: e.target.value })}
-              >
-                <option value="">Delivery Time *</option>
-                {timeSlots.map(slot => (
-                  <option key={slot.value} value={slot.value}>
-                    {slot.label}
-                  </option>
-                ))}
-              </select>
+          <div className="space-y-6">
+            <div className="space-y-4">
+              <h2 className="font-display text-foreground text-xl font-semibold">Your Details</h2>
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="full-name" className="mb-2 block font-medium">
+                    Full Name *
+                  </label>
+                  <input
+                    required
+                    id="full-name"
+                    placeholder="Enter your full name"
+                    className={inputClass}
+                    value={form.name}
+                    onChange={e => setForm({ ...form, name: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="phone-number" className="mb-2 block font-medium">
+                    Phone Number *
+                  </label>
+                  <input
+                    required
+                    id="phone-number"
+                    type="tel"
+                    placeholder="Enter your phone number"
+                    className={inputClass}
+                    value={form.phone}
+                    onChange={e => setForm({ ...form, phone: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email-address" className="mb-2 block font-medium">
+                    Email Address *
+                  </label>
+                  <input
+                    required
+                    id="email-address"
+                    type="email"
+                    placeholder="Enter your email address"
+                    className={inputClass}
+                    value={form.email}
+                    onChange={e => setForm({ ...form, email: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="delivery-address" className="mb-2 block font-medium">
+                    Delivery Address *
+                  </label>
+                  <input
+                    required
+                    id="delivery-address"
+                    placeholder="Enter your delivery address"
+                    className={inputClass}
+                    value={form.address}
+                    onChange={e => setForm({ ...form, address: e.target.value })}
+                  />
+                </div>
+              </div>
             </div>
-            <textarea
-              placeholder="Allergies or dietary requirements (optional)"
-              rows={3}
-              className={inputClass}
-              value={form.allergies}
-              onChange={e => setForm({ ...form, allergies: e.target.value })}
-            />
-            <textarea
-              placeholder="Special instructions (optional)"
-              rows={3}
-              className={inputClass}
-              value={form.instructions}
-              onChange={e => setForm({ ...form, instructions: e.target.value })}
-            />
+
+            {/* Meal Selection */}
+            <div>
+              <h2 className="font-display text-foreground mb-4 text-xl font-semibold">
+                Select Your Meals
+              </h2>
+              <div className="grid grid-cols-1 gap-3 space-y-3 sm:grid-cols-2">
+                {meals.map(meal => {
+                  const isSelected = !!selectedMeals[meal.id];
+                  return (
+                    <div
+                      key={meal.id}
+                      className={`flex cursor-pointer items-center gap-4 rounded-xl border p-4 transition-all ${
+                        isSelected
+                          ? 'border-primary bg-primary/5'
+                          : 'border-border bg-card hover:border-primary/30'
+                      }`}
+                      onClick={() => toggleMeal(meal.id)}
+                    >
+                      <Image
+                        src={meal.image}
+                        alt={meal.name}
+                        className="h-14 w-14 shrink-0 rounded-lg object-cover"
+                      />
+                      <div className="min-w-0 flex-1">
+                        <h3 className="text-foreground text-sm font-semibold">{meal.name}</h3>
+                        <p className="text-muted-foreground truncate text-xs">{meal.description}</p>
+                      </div>
+                      <span className="text-primary text-sm font-bold whitespace-nowrap">
+                        £{meal.price}
+                      </span>
+                      {isSelected && (
+                        <div className="flex items-center gap-2" onClick={e => e.stopPropagation()}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              if (selectedMeals[meal.id] === 1) toggleMeal(meal.id);
+                              else updateQty(meal.id, selectedMeals[meal.id] - 1);
+                            }}
+                            className="bg-muted text-foreground flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-sm font-bold"
+                          >
+                            −
+                          </button>
+                          <span className="text-foreground w-6 text-center text-sm font-semibold">
+                            {selectedMeals[meal.id]}
+                          </span>
+                          <button
+                            type="button"
+                            onClick={() => updateQty(meal.id, selectedMeals[meal.id] + 1)}
+                            className="bg-muted text-foreground flex h-7 w-7 cursor-pointer items-center justify-center rounded-md text-sm font-bold"
+                          >
+                            +
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+              {total > 0 && (
+                <div className="font-display text-primary mt-4 text-right text-xl font-bold">
+                  Subtotal: £{total}
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="font-display text-foreground text-xl font-semibold">
+                Delivery Details
+              </h2>
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="preferred-date" className="mb-2 block font-medium">
+                    Preferred Delivery Date *
+                  </label>
+                  <input
+                    required
+                    id="preferred-date"
+                    min={new Date().toISOString().split('T')[0]}
+                    type="date"
+                    className={inputClass}
+                    value={form.deliveryDate}
+                    onChange={e => setForm({ ...form, deliveryDate: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="preferred-time" className="mb-2 block font-medium">
+                    Preferred Delivery Time *
+                  </label>
+                  <select
+                    required
+                    id="preferred-time"
+                    className={inputClass}
+                    value={form.deliveryTime}
+                    onChange={e => setForm({ ...form, deliveryTime: e.target.value })}
+                  >
+                    <option value="">Delivery Time *</option>
+                    {timeSlots.map(slot => (
+                      <option key={slot.value} value={slot.value}>
+                        {slot.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h2 className="font-display text-foreground text-xl font-semibold">
+                Special Requests
+              </h2>
+              <div>
+                <label htmlFor="allergies" className="mb-2 block font-medium">
+                  Allergies or dietary requirements (optional)
+                </label>
+                <textarea
+                  id="allergies"
+                  placeholder="Allergies or dietary requirements (optional)"
+                  rows={3}
+                  className={inputClass}
+                  value={form.allergies}
+                  onChange={e => setForm({ ...form, allergies: e.target.value })}
+                />
+              </div>
+
+              <div>
+                <label htmlFor="special-instructions" className="mb-2 block font-medium">
+                  Special instructions (optional)
+                </label>
+                <textarea
+                  placeholder="Special instructions (optional)"
+                  id="special-instructions"
+                  rows={3}
+                  className={inputClass}
+                  value={form.instructions}
+                  onChange={e => setForm({ ...form, instructions: e.target.value })}
+                />
+              </div>
+            </div>
           </div>
 
           <button

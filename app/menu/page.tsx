@@ -17,14 +17,14 @@ const MenuPage = () => {
   return (
     <>
       <section className="bg-background py-16 md:py-24">
-        <div className="container">
+        <div className="container px-4">
           <div className="mb-12 text-center">
             <h1 className="font-display text-foreground mb-4 text-4xl font-bold md:text-5xl">
               Our Menu
             </h1>
             <p className="text-muted-foreground mx-auto max-w-2xl text-lg">
-              Every dish is prepared fresh from scratch using authentic Nigerian recipes and the
-              finest ingredients. Pick your favourites and we&apos;ll deliver them hot to your door.
+              Every dish is prepared fresh from scratch using time-honoured recipes and the finest
+              ingredients. Pick your favourites and we&apos;ll deliver them hot to your door.
             </p>
           </div>
 

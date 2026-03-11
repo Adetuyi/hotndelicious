@@ -9,7 +9,7 @@ import MealCard from '@/components/MealCard';
 import heroImg from '@/assets/hero-food.jpg';
 import Image from 'next/image';
 
-const featuredMeals = meals.slice(0, 6);
+const featuredMeals = meals.slice(0, 8);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -27,11 +27,11 @@ export default function Home() {
       <section className="relative flex min-h-[85vh] items-center overflow-hidden">
         <Image
           src={heroImg}
-          alt="Authentic Nigerian dishes including jollof rice, suya, and egusi soup"
+          alt="A spread of freshly cooked home meals including jollof rice, grilled skewers, and hearty soups"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="bg-gradient-hero absolute inset-0" />
-        <div className="relative z-10 container py-20">
+        <div className="relative z-10 container px-4 py-20">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -39,12 +39,12 @@ export default function Home() {
             className="max-w-2xl"
           >
             <h1 className="font-display text-primary-foreground mb-6 text-4xl leading-tight font-bold md:text-6xl lg:text-7xl">
-              Authentic Nigerian
-              <span className="text-primary block">Home-Cooked Meals</span>
+              Freshly Made,
+              <span className="text-primary block">Delivered to Your Door</span>
             </h1>
             <p className="text-primary-foreground/80 font-body mb-8 text-lg leading-relaxed md:text-xl">
-              Made with love, delivered hot to your door in Middlesbrough. From smoky suya to rich
-              egusi soup — taste the flavours of Nigeria.
+              Made with love, delivered hot to your door in Middlesbrough. From smoky grilled
+              skewers to rich, hearty soups — taste the flavours of home.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
               <Link
@@ -66,7 +66,7 @@ export default function Home() {
 
       {/* About */}
       <section className="bg-background py-16 md:py-24">
-        <div className="container">
+        <div className="container px-4">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -79,14 +79,13 @@ export default function Home() {
               Who&apos;s Cooking Your Food?
             </h2>
             <p className="text-muted-foreground mb-4 text-lg leading-relaxed">
-              We&apos;re a family that brought the bold, rich flavours of Nigerian cuisine all the
-              way to Middlesbrough. Every meal is prepared from scratch in our kitchen using
-              authentic recipes passed down through generations, fresh ingredients sourced daily,
-              and a whole lot of love.
+              We&apos;re a family that brought bold, vibrant flavours from our home kitchen all the
+              way to Middlesbrough. Every meal is prepared from scratch using recipes passed down
+              through generations, fresh ingredients sourced daily, and a whole lot of love.
             </p>
             <p className="text-muted-foreground text-lg leading-relaxed">
-              No shortcuts. No frozen meals. Just honest, home-cooked Nigerian food — the way
-              it&apos;s meant to taste.
+              No shortcuts. No frozen meals. Just honest, home-cooked food — the way it&apos;s meant
+              to taste.
             </p>
           </motion.div>
         </div>
@@ -108,7 +107,7 @@ export default function Home() {
             </h2>
             <p className="text-muted-foreground text-lg">Straight from our kitchen to your table</p>
           </motion.div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 px-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {featuredMeals.map((meal, i) => (
               <motion.div
                 key={meal.id}
@@ -135,7 +134,7 @@ export default function Home() {
 
       {/* How It Works */}
       <section className="bg-background py-16 md:py-24">
-        <div className="container">
+        <div className="container px-4">
           <h2 className="font-display text-foreground mb-12 text-center text-3xl font-bold md:text-4xl">
             How It Works
           </h2>
@@ -145,7 +144,7 @@ export default function Home() {
                 icon: UtensilsCrossed,
                 step: '1',
                 title: 'Browse Our Menu',
-                desc: 'Explore our delicious selection of authentic Nigerian dishes',
+                desc: 'Explore our delicious selection of freshly made dishes',
               },
               {
                 icon: ClipboardList,
@@ -185,7 +184,7 @@ export default function Home() {
 
       {/* Delivery Areas */}
       <section className="bg-muted py-16 md:py-20">
-        <div className="container text-center">
+        <div className="container px-4 text-center">
           <h2 className="font-display text-foreground mb-4 text-3xl font-bold md:text-4xl">
             Delivering Across Middlesbrough
           </h2>
@@ -205,9 +204,9 @@ export default function Home() {
 
       {/* CTA */}
       <section className="bg-gradient-cta py-16 md:py-24">
-        <div className="container text-center">
+        <div className="container px-4 text-center">
           <h2 className="font-display text-primary-foreground mb-4 text-3xl font-bold md:text-4xl">
-            Ready to Taste the Best of Nigeria?
+            Ready to Taste Something Delicious?
           </h2>
           <p className="text-primary-foreground/80 mx-auto mb-8 max-w-xl text-lg">
             Order now and let us bring the flavours of home to your doorstep.
