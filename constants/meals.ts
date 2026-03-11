@@ -61,35 +61,6 @@ export const meals: MealItem[] = [
     category: 'pasta',
   },
 
-  // Snacks
-  {
-    id: 'meat-pie',
-    name: 'Meat Pie',
-    description:
-      'Flaky, golden pastry filled with seasoned minced meat, diced potatoes, and carrots — a satisfying baked treat',
-    price: 10,
-    image: meatPieImg,
-    category: 'snacks',
-  },
-  {
-    id: 'puff-puff',
-    name: 'Puff Puff',
-    description:
-      'Soft, golden deep-fried dough balls — a light, lightly sweetened snack that is impossible to resist',
-    price: 8,
-    image: puffPuffImg,
-    category: 'snacks',
-  },
-  {
-    id: 'small-chops',
-    name: 'Small Chops',
-    description:
-      'An assorted platter of bite-sized party favourites: puff puff, samosa, spring rolls, and peppered chicken',
-    price: 18,
-    image: smallChopsImg,
-    category: 'snacks',
-  },
-
   // Grill
   {
     id: 'suya-burger',
@@ -126,6 +97,35 @@ export const meals: MealItem[] = [
     price: 35,
     image: roastedYamAndPlantainImg,
     category: 'grill',
+  },
+
+  // Snacks
+  {
+    id: 'meat-pie',
+    name: 'Meat Pie',
+    description:
+      'Flaky, golden pastry filled with seasoned minced meat, diced potatoes, and carrots — a satisfying baked treat',
+    price: 10,
+    image: meatPieImg,
+    category: 'snacks',
+  },
+  {
+    id: 'small-chops',
+    name: 'Small Chops',
+    description:
+      'An assorted platter of bite-sized party favourites: puff puff, samosa, spring rolls, and peppered chicken',
+    price: 18,
+    image: smallChopsImg,
+    category: 'snacks',
+  },
+  {
+    id: 'puff-puff',
+    name: 'Puff Puff',
+    description:
+      'Soft, golden deep-fried dough balls — a light, lightly sweetened snack that is impossible to resist',
+    price: 8,
+    image: puffPuffImg,
+    category: 'snacks',
   },
 
   // Breakfast

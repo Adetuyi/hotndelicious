@@ -18,8 +18,11 @@ const ContactPage = () => {
     const message = encodeURIComponent(
       `Hi! My name is ${form.name}.\n\n${form.message}\n\nEmail: ${form.email}${form.phone ? `\nPhone: ${form.phone}` : ''}`
     );
-    window.open(`https://wa.me/${siteConfig.contact.whatsapp}?text=${message}`, '_blank');
     toast.success('Opening WhatsApp!');
+
+    setTimeout(() => {
+      window.open(`https://wa.me/${siteConfig.contact.whatsapp}?text=${message}`, '_blank');
+    }, 1000);
   };
 
   const inputClass =

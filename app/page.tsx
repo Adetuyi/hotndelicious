@@ -9,7 +9,7 @@ import MealCard from '@/components/MealCard';
 import heroImg from '@/assets/hero-food.jpg';
 import Image from 'next/image';
 
-const featuredMeals = meals.slice(0, 8);
+const featuredMeals = meals.slice(0, 9);
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -113,6 +113,7 @@ export default function Home() {
                 key={meal.id}
                 initial="hidden"
                 whileInView="visible"
+                className="last:sm:hidden last:lg:block last:xl:hidden"
                 viewport={{ once: true }}
                 variants={fadeUp}
                 custom={i}

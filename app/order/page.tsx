@@ -81,8 +81,10 @@ const OrderPageContent = () => {
       `Hi! I'd like to place an order:\n\n${mealSummary}\n\nSubtotal: £${total}\n\nName: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\nAddress: ${form.address}\nDelivery Date: ${form.deliveryDate}\nDelivery Time: ${timeSlots.find(t => t.value === form.deliveryTime)?.label || ''}\n${form.allergies ? `Allergies: ${form.allergies}\n` : ''}${form.instructions ? `Instructions: ${form.instructions}` : ''}`
     );
 
-    window.open(`https://wa.me/${siteConfig.contact.whatsapp}?text=${message}`, '_blank');
     toast.success('Opening WhatsApp to confirm your order!');
+    setTimeout(() => {
+      window.open(`https://wa.me/${siteConfig.contact.whatsapp}?text=${message}`, '_blank');
+    }, 1000);
   };
 
   const inputClass =
