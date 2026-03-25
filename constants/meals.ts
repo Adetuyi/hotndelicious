@@ -38,7 +38,7 @@ export const meals: MealItem[] = [
     id: 'spaghetti-bolognaise',
     name: 'Spaghetti Bolognaise',
     description: 'Classic spaghetti topped with a rich, slow-cooked meat sauce and aromatic herbs',
-    price: 24,
+    price: 15,
     image: spaghettiImg,
     category: 'pasta',
   },
@@ -47,7 +47,7 @@ export const meals: MealItem[] = [
     name: 'Lasagna',
     description:
       'Oven-baked pasta layered with rich meat sauce, creamy béchamel, and golden melted cheese',
-    price: 26,
+    price: 12,
     image: lasagnaImg,
     category: 'pasta',
   },
@@ -56,7 +56,7 @@ export const meals: MealItem[] = [
     name: 'Plantain Lasagna',
     description:
       'A creative twist on classic lasagna, layered with sweet ripe plantain, seasoned minced meat, and béchamel sauce',
-    price: 30,
+    price: 15,
     image: plantainLasagnaImg,
     category: 'pasta',
   },
@@ -67,34 +67,34 @@ export const meals: MealItem[] = [
     name: 'Suya Burger',
     description:
       'A bold fusion burger stacked with a spiced grilled beef patty, caramelized onions, and fresh toppings in a toasted bun',
-    price: 32,
+    price: 10,
     image: suyaBurgerImg,
     category: 'grill',
   },
   {
     id: 'suya',
-    name: 'Suya',
+    name: 'Suya Sticks',
     description:
       'Smoky, peppery grilled beef skewers coated in a bold spice blend, served with sliced onions and tomatoes',
-    price: 22,
+    price: 3,
     image: suyaImg,
     category: 'grill',
   },
   {
     id: 'roasted-tilapia-fish',
-    name: 'Roasted Tilapia Fish',
+    name: 'Roasted Tilapia Platter',
     description:
       'Whole tilapia fish marinated in a blend of peppers and spices, then fire-roasted to a crispy, flavourful finish',
-    price: 28,
+    price: 15,
     image: roastedTilapiaImg,
     category: 'grill',
   },
   {
     id: 'roasted-yam-and-plantain-with-tilapia-fish',
-    name: 'Roasted Yam and Plantain with Tilapia Fish',
+    name: 'Roasted Yam and Tilapia Platter',
     description:
       'Fire-roasted yam and plantain served alongside seasoned grilled tilapia — a classic combination full of bold flavour',
-    price: 35,
+    price: 18,
     image: roastedYamAndPlantainImg,
     category: 'grill',
   },
@@ -105,25 +105,25 @@ export const meals: MealItem[] = [
     name: 'Meat Pie',
     description:
       'Flaky, golden pastry filled with seasoned minced meat, diced potatoes, and carrots — a satisfying baked treat',
-    price: 10,
+    price: 2,
     image: meatPieImg,
     category: 'snacks',
   },
   {
     id: 'small-chops',
-    name: 'Small Chops',
+    name: 'Small Chops Platter',
     description:
       'An assorted platter of bite-sized party favourites: puff puff, samosa, spring rolls, and peppered chicken',
-    price: 18,
+    price: 25,
     image: smallChopsImg,
     category: 'snacks',
   },
   {
     id: 'puff-puff',
-    name: 'Puff Puff',
+    name: 'Puff Puff Plater',
     description:
       'Soft, golden deep-fried dough balls — a light, lightly sweetened snack that is impossible to resist',
-    price: 8,
+    price: 10,
     image: puffPuffImg,
     category: 'snacks',
   },
@@ -134,16 +134,16 @@ export const meals: MealItem[] = [
     name: 'Oatmeal',
     description:
       'Creamy, slow-cooked oats served warm — a wholesome and filling way to start the day',
-    price: 10,
+    price: 5,
     image: oatmealImg,
     category: 'breakfast',
   },
   {
     id: 'akara-and-akamu',
-    name: 'Akara and Akamu',
+    name: 'Special Akara & Akamu Breakfast',
     description:
       'Crispy deep-fried bean cakes paired with smooth, warm fermented corn porridge — a hearty, comforting breakfast',
-    price: 14,
+    price: 10,
     image: akaraAndAkamuImg,
     category: 'breakfast',
   },
@@ -153,7 +153,7 @@ export const meals: MealItem[] = [
     id: 'fried-rice',
     name: 'Fried Rice',
     description: 'Stir-fried rice loaded with colourful vegetables, prawns, and savoury seasoning',
-    price: 30,
+    price: 10,
     image: friedRiceImg,
     category: 'rice',
   },
@@ -161,7 +161,7 @@ export const meals: MealItem[] = [
     id: 'white-rice-and-stew',
     name: 'White Rice and Stew',
     description: 'Fluffy steamed white rice paired with a hearty, slow-cooked tomato-based stew',
-    price: 22,
+    price: 10,
     image: whiteRiceAndStewImg,
     category: 'rice',
   },
@@ -170,7 +170,7 @@ export const meals: MealItem[] = [
     name: 'Jollof Rice with Protein of Choice and Plantain',
     description:
       'Fragrant, tomato-based jollof rice served with your choice of chicken, beef, or fish alongside caramelized fried plantain',
-    price: 35,
+    price: 8.5,
     image: jollofRiceWithProteinImg,
     category: 'rice',
   },
@@ -179,7 +179,7 @@ export const meals: MealItem[] = [
     name: 'Ofada Rice and Ayamase Sauce',
     description:
       'Unpolished, locally grown rice paired with a bold, smoky green pepper sauce — a deeply flavourful combination',
-    price: 32,
+    price: 15,
     image: ofadaRiceImg,
     category: 'rice',
   },
@@ -190,7 +190,7 @@ export const meals: MealItem[] = [
     name: 'Tomato Stew',
     description:
       'Classic tomato-based stew slow-cooked with blended peppers, onions, and your choice of protein',
-    price: 14,
+    price: 8,
     image: tomatoStewImg,
     category: 'sides',
   },
@@ -199,16 +199,16 @@ export const meals: MealItem[] = [
     name: 'Moi Moi',
     description:
       'Steamed bean pudding made with blended black-eyed peas, peppers, onions, and a choice of fillings',
-    price: 10,
+    price: 3,
     image: moiMoiImg,
     category: 'sides',
   },
   {
     id: 'abacha',
-    name: 'Abacha',
+    name: 'Special Abacha (African Salad)',
     description:
       'A vibrant salad of shredded dried cassava, palm oil, garden eggs, fermented beans, and crayfish — bold and refreshing',
-    price: 18,
+    price: 15,
     image: abachaImg,
     category: 'sides',
   },
@@ -217,7 +217,7 @@ export const meals: MealItem[] = [
     name: 'Okpa',
     description:
       'Dense and satisfying Bambara nut pudding steamed to perfection — wholesome, filling, and full of flavour',
-    price: 8,
+    price: 4,
     image: okpaImg,
     category: 'sides',
   },
@@ -228,7 +228,7 @@ export const meals: MealItem[] = [
     name: 'Efo Riro',
     description:
       'A rich, hearty spinach stew loaded with assorted meats, smoked fish, and aromatic peppers',
-    price: 26,
+    price: 10,
     image: efoRiroImg,
     category: 'soup',
   },
@@ -237,7 +237,7 @@ export const meals: MealItem[] = [
     name: 'Okra Soup',
     description:
       'Silky, draw okra soup cooked with assorted meat and seafood — warming, wholesome, and full of depth',
-    price: 24,
+    price: 10,
     image: okraSoupImg,
     category: 'soup',
   },
@@ -246,7 +246,7 @@ export const meals: MealItem[] = [
     name: 'Ogbono Soy',
     description:
       'Draw soup made from ground ogbono seeds with a soy-enriched twist — thick, hearty, and deeply satisfying',
-    price: 24,
+    price: 10,
     image: ogbonoSoyImg,
     category: 'soup',
   },
@@ -255,7 +255,7 @@ export const meals: MealItem[] = [
     name: 'Banga Soup',
     description:
       'Thick, aromatic palm nut soup slow-cooked with fresh fish and fragrant hand-picked spices',
-    price: 28,
+    price: 10,
     image: bangaSoupImg,
     category: 'soup',
   },
@@ -264,7 +264,7 @@ export const meals: MealItem[] = [
     name: 'Ofe Akwu',
     description:
       'Rich, flavourful palm nut soup simmered with assorted meat and crayfish — warming and deeply comforting',
-    price: 26,
+    price: 10,
     image: ofeAkwuImg,
     category: 'soup',
   },
@@ -273,7 +273,7 @@ export const meals: MealItem[] = [
     name: 'Afang Soup',
     description:
       'A delicate, earthy soup made with afang leaves, waterleaf, and assorted proteins — layered with complex flavour',
-    price: 30,
+    price: 15,
     image: afangSoupImg,
     category: 'soup',
   },
@@ -282,7 +282,7 @@ export const meals: MealItem[] = [
     name: 'Edikaikong',
     description:
       'Highly nutritious leafy green soup packed with ugu and waterleaf, loaded with seafood and assorted meat',
-    price: 28,
+    price: 15,
     image: edikaikongImg,
     category: 'soup',
   },
@@ -291,7 +291,7 @@ export const meals: MealItem[] = [
     name: 'Oha Soup',
     description:
       'Delicate, earthy soup made with tender oha leaves and cocoyam thickener, rich with assorted meats',
-    price: 28,
+    price: 13,
     image: ohaSoupImg,
     category: 'soup',
   },
@@ -302,7 +302,7 @@ export const meals: MealItem[] = [
     name: 'Pounded Yam',
     description:
       'Silky, smooth yam dough pounded to perfection — a classic, versatile swallow best enjoyed with any rich soup',
-    price: 12,
+    price: 7,
     image: poundedYamImg,
     category: 'swallow',
   },
@@ -311,7 +311,7 @@ export const meals: MealItem[] = [
     name: 'Fufu',
     description:
       'Smooth, stretchy cassava dough — a soft and satisfying side to pair with any hearty soup',
-    price: 10,
+    price: 8,
     image: fufuImg,
     category: 'swallow',
   },
@@ -320,7 +320,7 @@ export const meals: MealItem[] = [
     name: 'Garri',
     description:
       'Light cassava flakes served with cold water, sugar, groundnuts, and milk — a wholesome and satisfying snack',
-    price: 6,
+    price: 5,
     image: garriImg,
     category: 'swallow',
   },
