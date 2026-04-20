@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { siteConfig } from '@/constants/siteConfig';
 import { Phone, Mail, MapPin } from 'lucide-react';
-import LogoStacked from './LogoStacked';
+import Image from 'next/image';
 
 const Footer = () => {
   return (
@@ -10,8 +10,15 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="mb-4 flex items-center gap-2">
-              <LogoStacked variant="light" className="h-12 w-auto" />
+            <div className="mb-4 flex items-center gap-2 text-sm">
+              {/* <LogoStacked variant="light" className="h-12 w-auto" /> */}
+              <Image
+                src="/logo.png"
+                alt="HotNNice Delicacies"
+                width={160}
+                height={160}
+                className="hidden sm:inline-block"
+              />
             </div>
             <p className="text-background/70 text-sm leading-relaxed">{siteConfig.tagline}</p>
           </div>

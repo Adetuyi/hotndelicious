@@ -5,7 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import LogoStacked from './LogoStacked';
+import Image from 'next/image';
 
 const navItems = [
   { label: 'Home', path: '/' },
@@ -21,8 +21,15 @@ const Header = () => {
   return (
     <header className="bg-card/95 border-border sticky top-0 z-50 border-b backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between px-4 md:h-20">
-        <Link href="/" className="flex items-center gap-2">
-          <LogoStacked className="h-12 w-auto" />
+        <Link href="/" className="flex items-center gap-2 text-sm">
+          {/* <LogoStacked className="h-12 w-auto" /> */}
+          <Image
+            src="/logo.png"
+            alt="HotNNice Delicacies"
+            width={80}
+            height={80}
+            className="hidden sm:inline-block"
+          />
         </Link>
 
         {/* Desktop nav */}
