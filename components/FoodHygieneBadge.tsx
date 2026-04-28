@@ -55,7 +55,7 @@ const FoodHygieneBadge = ({ size = 'md', className, title }: Props) => {
 
       {/* Rating numbers 0-5 with the matching one highlighted */}
       {[0, 1, 2, 3, 4, 5].map(n => {
-        const x = 18 + n * 32;
+        const x = 30 + n * 32;
         const isMatch = n === siteConfig.foodHygiene.rating;
         return (
           <g key={n}>
