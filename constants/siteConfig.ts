@@ -27,6 +27,12 @@ export const siteConfig = {
     delivery: '12pm - 8pm, Tuesday - Sunday',
     orderCutoff: 'Order by 10am for same-day delivery',
   },
+  foodHygiene: {
+    rating: 5,
+    ratingLabel: 'Very Good',
+    authority: 'Food Standards Agency',
+    listingUrl: 'https://ratings.food.gov.uk/business/1913815/hot-n-nice-delicacies',
+  },
 };
 
 export type MealItem = {

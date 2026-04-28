@@ -244,7 +244,7 @@ export const meals: MealItem[] = [
   },
   {
     id: 'ogbono-soy',
-    name: 'Ogbono Soy',
+    name: 'Ogbono Soup',
     description:
       'Draw soup made from ground ogbono seeds with a soy-enriched twist — thick, hearty, and deeply satisfying',
     price: 10,

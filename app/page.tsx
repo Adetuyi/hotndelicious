@@ -6,6 +6,8 @@ import { UtensilsCrossed, Truck, ClipboardList, Phone, Mail, MessageCircle } fro
 import { siteConfig } from '@/constants/siteConfig';
 import { meals } from '@/constants/meals';
 import MealCard from '@/components/MealCard';
+import FoodHygieneTrustStrip from '@/components/FoodHygieneTrustStrip';
+import FoodHygieneSection from '@/components/FoodHygieneSection';
 import heroImg from '@/assets/hero-food.jpg';
 import Image from 'next/image';
 
@@ -64,6 +66,8 @@ export default function Home() {
         </div>
       </section>
 
+      <FoodHygieneTrustStrip />
+
       {/* About */}
       <section className="bg-background py-16 md:py-24">
         <div className="container px-4">
@@ -86,6 +90,19 @@ export default function Home() {
             <p className="text-muted-foreground text-lg leading-relaxed">
               No shortcuts. No frozen meals. Just honest, home-cooked food — the way it&apos;s meant
               to taste.
+            </p>
+            <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
+              And we&apos;re proud to hold a{' '}
+              <a
+                href={siteConfig.foodHygiene.listingUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary font-semibold underline-offset-4 hover:underline"
+              >
+                5-star Food Hygiene Rating
+              </a>{' '}
+              from the {siteConfig.foodHygiene.authority} — because every kitchen deserves nothing
+              less.
             </p>
           </motion.div>
         </div>
@@ -132,6 +149,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FoodHygieneSection />
 
       {/* How It Works */}
       <section className="bg-background py-16 md:py-24">

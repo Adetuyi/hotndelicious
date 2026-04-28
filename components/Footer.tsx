@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/constants/siteConfig';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import Image from 'next/image';
+import FoodHygieneBadge from './FoodHygieneBadge';
 
 const Footer = () => {
   return (
@@ -20,7 +21,19 @@ const Footer = () => {
                 className="hidden sm:inline-block"
               />
             </div>
-            <p className="text-background/70 text-sm leading-relaxed">{siteConfig.tagline}</p>
+            <p className="text-background/70 mb-6 text-sm leading-relaxed">{siteConfig.tagline}</p>
+            <a
+              href={siteConfig.foodHygiene.listingUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex flex-col items-start gap-2 transition-opacity hover:opacity-90"
+              aria-label={`Verify our Food Hygiene Rating ${siteConfig.foodHygiene.rating} on food.gov.uk`}
+            >
+              <FoodHygieneBadge size="sm" />
+              <span className="text-background/60 text-xs font-medium">
+                Food Hygiene Rating: {siteConfig.foodHygiene.rating}
+              </span>
+            </a>
           </div>
 
           {/* Quick Links */}
