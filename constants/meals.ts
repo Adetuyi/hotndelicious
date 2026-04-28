@@ -39,7 +39,7 @@ export const meals: MealItem[] = [
     id: 'spaghetti-bolognaise',
     name: 'Spaghetti Bolognaise',
     description: 'Classic spaghetti topped with a rich, slow-cooked meat sauce and aromatic herbs',
-    price: 15,
+    price: 20,
     image: spaghettiImg,
     category: 'pasta',
   },
@@ -48,7 +48,7 @@ export const meals: MealItem[] = [
     name: 'Lasagna',
     description:
       'Oven-baked pasta layered with rich meat sauce, creamy béchamel, and golden melted cheese',
-    price: 12,
+    price: 20,
     image: lasagnaImg,
     category: 'pasta',
   },
@@ -57,7 +57,7 @@ export const meals: MealItem[] = [
     name: 'Plantain Lasagna',
     description:
       'A creative twist on classic lasagna, layered with sweet ripe plantain, seasoned minced meat, and béchamel sauce',
-    price: 15,
+    price: 25,
     image: plantainLasagnaImg,
     category: 'pasta',
   },
@@ -68,7 +68,7 @@ export const meals: MealItem[] = [
     name: 'Suya Burger',
     description:
       'A bold fusion burger stacked with a spiced grilled beef patty, caramelized onions, and fresh toppings in a toasted bun',
-    price: 10,
+    price: 15,
     image: suyaBurgerImg,
     category: 'grill',
   },
@@ -77,7 +77,7 @@ export const meals: MealItem[] = [
     name: 'Suya Sticks',
     description:
       'Smoky, peppery grilled beef skewers coated in a bold spice blend, served with sliced onions and tomatoes',
-    price: 3,
+    price: 5,
     image: suyaImg,
     category: 'grill',
   },
@@ -86,7 +86,7 @@ export const meals: MealItem[] = [
     name: 'Roasted Tilapia Platter',
     description:
       'Whole tilapia fish marinated in a blend of peppers and spices, then fire-roasted to a crispy, flavourful finish',
-    price: 15,
+    price: 25,
     image: roastedTilapiaImg,
     category: 'grill',
   },
@@ -95,7 +95,7 @@ export const meals: MealItem[] = [
     name: 'Roasted Yam and Tilapia Platter',
     description:
       'Fire-roasted yam and plantain served alongside seasoned grilled tilapia — a classic combination full of bold flavour',
-    price: 18,
+    price: 30,
     image: roastedYamAndPlantainImg,
     category: 'grill',
   },
@@ -144,7 +144,7 @@ export const meals: MealItem[] = [
     name: 'Special Akara & Akamu Breakfast',
     description:
       'Crispy deep-fried bean cakes paired with smooth, warm fermented corn porridge — a hearty, comforting breakfast',
-    price: 10,
+    price: 15,
     image: akaraAndAkamuImg,
     category: 'breakfast',
   },
@@ -154,7 +154,7 @@ export const meals: MealItem[] = [
     id: 'fried-rice',
     name: 'Fried Rice',
     description: 'Stir-fried rice loaded with colourful vegetables, prawns, and savoury seasoning',
-    price: 10,
+    price: 12,
     image: friedRiceImg,
     category: 'rice',
   },
@@ -162,7 +162,7 @@ export const meals: MealItem[] = [
     id: 'white-rice-and-stew',
     name: 'White Rice and Stew',
     description: 'Fluffy steamed white rice paired with a hearty, slow-cooked tomato-based stew',
-    price: 10,
+    price: 12,
     image: whiteRiceAndStewImg,
     category: 'rice',
   },
@@ -171,7 +171,7 @@ export const meals: MealItem[] = [
     name: 'Jollof Rice with Protein of Choice and Plantain',
     description:
       'Fragrant, tomato-based jollof rice served with your choice of chicken, beef, or fish alongside caramelized fried plantain',
-    price: 8.5,
+    price: 10,
     image: jollofRiceWithProteinImg,
     category: 'rice',
   },
@@ -218,7 +218,7 @@ export const meals: MealItem[] = [
     name: 'Okpa',
     description:
       'Dense and satisfying Bambara nut pudding steamed to perfection — wholesome, filling, and full of flavour',
-    price: 4,
+    price: 5,
     image: okpaImg,
     category: 'sides',
   },
@@ -292,7 +292,7 @@ export const meals: MealItem[] = [
     name: 'Oha Soup',
     description:
       'Delicate, earthy soup made with tender oha leaves and cocoyam thickener, rich with assorted meats',
-    price: 13,
+    price: 15,
     image: ohaSoupImg,
     category: 'soup',
   },
