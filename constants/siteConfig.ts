@@ -33,6 +33,10 @@ export const siteConfig = {
     authority: 'Food Standards Agency',
     listingUrl: 'https://ratings.food.gov.uk/business/1913815/hot-n-nice-delicacies',
   },
+  email: {
+    fromDefault: 'Hot N Nice Delicacies <orders@hotnnicedelicacies.com>',
+    notificationToDefault: 'hotnnicedelicacies@gmail.com',
+  },
 };
 
 export type MealItem = {
