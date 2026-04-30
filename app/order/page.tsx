@@ -440,8 +440,9 @@ const OrderPageContent = () => {
                 We&apos;ll confirm your order and total price by email or phone within 2 hours.
               </p>
               <p className="text-muted-foreground mt-2 text-sm">
-                Delivery: £{siteConfig.delivery.pricing.middlesbrough} within Middlesbrough.
-                Surrounding areas — contact us for pricing.
+                Delivery from £{siteConfig.delivery.pricing.middlesbrough} within Middlesbrough —
+                final price depends on your exact location. Surrounding areas — contact us for a
+                quote.
               </p>
             </div>
           </>

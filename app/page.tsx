@@ -211,12 +211,13 @@ export default function Home() {
           <p className="text-muted-foreground mb-6 text-lg">
             {siteConfig.delivery.areas.join(' • ')}
           </p>
-          <div className="bg-card border-border inline-block rounded-xl border px-8 py-4 shadow-sm">
+          <div className="bg-card border-border inline-block max-w-md rounded-xl border px-8 py-4 shadow-sm">
             <p className="text-foreground font-semibold">
-              £{siteConfig.delivery.pricing.middlesbrough} delivery within Middlesbrough
+              Delivery from £{siteConfig.delivery.pricing.middlesbrough} within Middlesbrough
             </p>
             <p className="text-muted-foreground mt-1 text-sm">
-              Surrounding areas — {siteConfig.delivery.pricing.surroundingNote.toLowerCase()}
+              Final price depends on your exact location. Surrounding areas — contact us for a
+              quote.
             </p>
           </div>
         </div>

@@ -15,7 +15,7 @@ export const siteConfig = {
   delivery: {
     areas: ['Middlesbrough', 'Stockton-on-Tees', 'Redcar', 'Thornaby', 'Billingham'],
     pricing: {
-      middlesbrough: 10,
+      middlesbrough: 5,
       surroundingNote: 'Contact us for pricing',
     },
   },
