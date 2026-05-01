@@ -15,15 +15,15 @@ import moiMoiImg from '@/assets/meals/moi-moi-1.png';
 import meatPieImg from '@/assets/meals/meat-pie-1.png';
 import oatmealImg from '@/assets/meals/oatmeal-1.png';
 import ofadaRiceImg from '@/assets/meals/ofada-rice-and-ayamase-sauce-1.png';
+import ofeAkwuImg from '@/assets/meals/ofe-akwu-1.png';
+import ogbonoSoyImg from '@/assets/meals/ogbono-soy-1.png';
 
 import spaghettiImg from '@/assets/meals/spaghetti-bolognaise.jpeg';
 import plantainLasagnaImg from '@/assets/meals/plantain-lasagna.jpeg';
 import whiteRiceAndStewImg from '@/assets/meals/white-rice-and-stew.jpeg';
-import ofeAkwuImg from '@/assets/meals/ofe-akwu.jpeg';
 import tomatoStewImg from '@/assets/meals/tomato-stew.jpeg';
 import roastedYamAndPlantainImg from '@/assets/meals/roasted-yam-and-plantain-with-tilapia-fish.jpeg';
 import ohaSoupImg from '@/assets/meals/oha-soup.jpeg';
-import ogbonoSoyImg from '@/assets/meals/ogbono-soy.jpeg';
 import okraSoupImg from '@/assets/meals/okra-soup.jpeg';
 import suyaImg from '@/assets/meals/suya.jpeg';
 import suyaBurgerImg from '@/assets/meals/suya-burger.jpeg';
