@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hot N Nice · Direction Exploration v2 — Substantial Restraint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700;800&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #161513;
+    color: #f4f0e8;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.45;
+  }
+
+  /* Page intro */
+  .page-intro {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 56px 40px 24px;
+  }
+  .page-intro .eyebrow {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a89c84;
+    margin-bottom: 14px;
+  }
+  .page-intro h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 40px;
+    letter-spacing: -0.015em;
+    margin: 0 0 14px;
+    color: #f4f0e8;
+  }
+  .page-intro h1 em { font-style: italic; color: #c69b6a; font-weight: 400; }
+  .page-intro p {
+    font-size: 14px;
+    color: #b5ab97;
+    max-width: 760px;
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* Canvas grid */
+  .canvas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1480px;
+    margin: 28px auto 80px;
+    padding: 0 40px;
+    align-items: start;
+  }
+  .direction { display: flex; flex-direction: column; gap: 16px; }
+  .direction-header { display: flex; flex-direction: column; gap: 6px; }
+  .direction-tag {
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a89c84;
+  }
+  .direction-title {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 24px;
+    color: #f4f0e8;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .direction-meta {
+    font-size: 12px;
+    color: #908874;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .direction-meta b { color: #d6cdb8; font-weight: 500; }
+
+  .screen {
+    position: relative;
+    min-height: 1180px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+  }
+  .direction-footer { font-size: 11px; color: #908874; line-height: 1.55; font-style: italic; }
+  .rule { height: 1px; background: currentColor; opacity: 0.18; width: 100%; }
+
+  /* ============================================================
+     DIRECTION D — Cereal Magazine Editorial
+     Off-white + deep ink + muted rust. Big editorial photography.
+     ============================================================ */
+  .screen-d {
+    background: #FAF7F0;
+    color: #1c1a16;
+    font-family: "Manrope", system-ui, sans-serif;
+    padding: 0;
+  }
+  .d-topbar {
+    padding: 22px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #1c1a16;
+  }
+  .d-topbar img { height: 36px; }
+  .d-nav {
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    display: flex;
+    gap: 22px;
+    color: #1c1a16;
+  }
+  .d-hero {
+    padding: 36px 28px 30px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+  .d-hero-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #9C5028;
+  }
+  .d-hero h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 350;
+    font-size: 44px;
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    margin: 6px 0 0;
+    color: #1c1a16;
+  }
+  .d-hero h1 em { font-style: italic; color: #9C5028; font-weight: 350; }
+  .d-hero-img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    margin: 8px 0;
+    display: block;
+  }
+  .d-hero-caption {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 22px;
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #5a544a;
+  }
+  .d-hero-caption .label {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9C5028;
+  }
+  .d-hero-caption .body { color: #1c1a16; font-size: 12.5px; line-height: 1.65; }
+  .d-cta-row {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 14px;
+  }
+  .d-cta {
+    background: #1c1a16;
+    color: #FAF7F0;
+    font-family: "Manrope", sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 13px 22px;
+    text-decoration: none;
+  }
+  .d-cta-secondary {
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #1c1a16;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    font-weight: 500;
+  }
+  .d-section {
+    padding: 32px 28px 24px;
+    border-top: 1px solid #1c1a16;
+  }
+  .d-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 22px;
+  }
+  .d-section-head h2 {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 22px;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .d-section-head h2 em { font-style: italic; color: #9C5028; }
+  .d-section-head .meta {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #5a544a;
+  }
+  .d-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 16px;
+  }
+  .d-card { display: flex; flex-direction: column; gap: 8px; }
+  .d-card img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+  }
+  .d-card .num {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: #9C5028;
+  }
+  .d-card .name {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.1;
+    color: #1c1a16;
+    margin: 2px 0 4px;
+    letter-spacing: -0.01em;
+  }
+  .d-card .desc {
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    line-height: 1.55;
+    color: #5a544a;
+  }
+  .d-card .price {
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #1c1a16;
+    margin-top: 4px;
+    letter-spacing: 0.04em;
+  }
+  .d-footer {
+    margin-top: auto;
+    padding: 24px 28px;
+    border-top: 1px solid #1c1a16;
+    display: flex;
+    justify-content: space-between;
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    color: #5a544a;
+    letter-spacing: 0.04em;
+  }
+  .d-footer b { color: #9C5028; font-weight: 700; }
+
+  /* ============================================================
+     DIRECTION E — Aesop Apothecary Storytelling
+     Warm sand + deep brown. EB Garamond throughout. Text-led.
+     ============================================================ */
+  .screen-e {
+    background: #ECDEC2;
+    color: #2D2218;
+    font-family: "EB Garamond", "Times New Roman", serif;
+    padding: 0;
+  }
+  .e-topbar {
+    padding: 30px 32px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .e-topbar img { height: 38px; }
+  .e-nav {
+    font-family: "EB Garamond", serif;
+    font-size: 12px;
+    color: #2D2218;
+    font-style: italic;
+    display: flex;
+    gap: 18px;
+  }
+  .e-hero {
+    padding: 14px 32px 38px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+  .e-eyebrow {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #7e644a;
+    letter-spacing: 0.02em;
+  }
+  .e-hero h1 {
+    font-family: "EB Garamond", serif;
+    font-weight: 500;
+    font-size: 38px;
+    line-height: 1.08;
+    letter-spacing: -0.005em;
+    margin: 0;
+    color: #2D2218;
+  }
+  .e-hero h1 em { font-style: italic; font-weight: 500; }
+  .e-body {
+    font-family: "EB Garamond", serif;
+    font-size: 15px;
+    line-height: 1.62;
+    color: #463728;
+    max-width: 92%;
+    margin: 0;
+    text-align: justify;
+    hyphens: auto;
+  }
+  .e-body em { font-style: italic; color: #2D2218; }
+  .e-body b { font-weight: 500; color: #2D2218; font-style: normal; }
+  .e-hero-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.95);
+  }
+  .e-img-caption {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #7e644a;
+    margin-top: -16px;
+    text-align: right;
+    padding: 0 4px;
+  }
+  .e-cta-row {
+    display: flex;
+    gap: 26px;
+    align-items: center;
+  }
+  .e-cta {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #2D2218;
+    text-decoration: none;
+    border-bottom: 1px solid #2D2218;
+    padding-bottom: 3px;
+  }
+  .e-cta-mini {
+    font-family: "EB Garamond", serif;
+    font-size: 12px;
+    color: #7e644a;
+    text-decoration: none;
+    font-style: italic;
+  }
+  .e-section {
+    padding: 30px 32px 24px;
+    border-top: 1px solid #8a7050;
+  }
+  .e-section h2 {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0 0 4px;
+    color: #2D2218;
+    letter-spacing: -0.005em;
+  }
+  .e-section .sub {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #7e644a;
+    margin-bottom: 22px;
+  }
+  .e-fare { display: flex; flex-direction: column; }
+  .e-fare-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: baseline;
+    padding: 14px 0;
+    border-bottom: 1px dashed #c8b89c;
+    gap: 18px;
+  }
+  .e-fare-row:last-child { border-bottom: none; }
+  .e-fare-name {
+    font-family: "EB Garamond", serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #2D2218;
+    letter-spacing: -0.005em;
+  }
+  .e-fare-desc {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: #7e644a;
+    margin-top: 3px;
+    line-height: 1.45;
+  }
+  .e-fare-price {
+    font-family: "EB Garamond", serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2D2218;
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+  .e-footer {
+    margin-top: auto;
+    padding: 26px 32px 32px;
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #7e644a;
+    line-height: 1.7;
+  }
+  .e-footer-rule { width: 28px; height: 1px; background: #7e644a; margin: 0 auto 14px; }
+
+  /* ============================================================
+     DIRECTION F — Modern Heritage British
+     Cream + deep forest green + gold detail. Classical serif.
+     ============================================================ */
+  .screen-f {
+    background: #F1E7CF;
+    color: #1F2A1C;
+    font-family: "Cormorant Garamond", "Times New Roman", serif;
+    padding: 0;
+  }
+  .f-topbar {
+    padding: 22px 28px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #1F2A1C;
+    color: #F1E7CF;
+  }
+  .f-topbar img { height: 34px; filter: drop-shadow(0 0 0 white); }
+  .f-nav {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #F1E7CF;
+    display: flex;
+    gap: 22px;
+    font-variant: small-caps;
+    letter-spacing: 0.12em;
+  }
+  .f-hero {
+    padding: 0;
+    position: relative;
+  }
+  .f-hero-img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.78) saturate(1.05);
+  }
+  .f-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(31,42,28,0.1) 0%, rgba(31,42,28,0.55) 70%, rgba(31,42,28,0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 30px 28px 28px;
+    color: #F1E7CF;
+  }
+  .f-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    color: #D4B665;
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+    margin-bottom: 10px;
+  }
+  .f-hero h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.02;
+    margin: 0;
+    color: #F1E7CF;
+    letter-spacing: -0.005em;
+  }
+  .f-hero h1 em { font-style: italic; color: #D4B665; font-weight: 400; }
+  .f-hero p {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(241,231,207,0.85);
+    margin: 14px 0 0;
+    max-width: 90%;
+    line-height: 1.45;
+  }
+  .f-band {
+    background: #1F2A1C;
+    color: #F1E7CF;
+    padding: 20px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Cormorant Garamond", serif;
+  }
+  .f-band-left {
+    font-size: 12px;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: #D4B665;
+  }
+  .f-cta {
+    background: #D4B665;
+    color: #1F2A1C;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 11px 22px;
+    font-variant: small-caps;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+  }
+  .f-section {
+    padding: 36px 28px 24px;
+  }
+  .f-section-head { margin-bottom: 22px; text-align: center; }
+  .f-section-head h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 28px;
+    margin: 0 0 4px;
+    color: #1F2A1C;
+    letter-spacing: -0.005em;
+  }
+  .f-section-head h2 em { font-style: italic; color: #5a4a1c; }
+  .f-section-head .sub {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #5a4a1c;
+  }
+  .f-section-head .ornament {
+    display: block;
+    width: 36px;
+    height: 1px;
+    background: #5a4a1c;
+    margin: 14px auto;
+    opacity: 0.5;
+  }
+  .f-list { display: flex; flex-direction: column; gap: 4px; }
+  .f-row {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(31,42,28,0.12);
+  }
+  .f-row:last-child { border-bottom: none; }
+  .f-row img {
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+    display: block;
+  }
+  .f-row-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .f-row-name {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 17px;
+    color: #1F2A1C;
+    letter-spacing: -0.005em;
+  }
+  .f-row-desc {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 12.5px;
+    color: #5a544a;
+    line-height: 1.4;
+  }
+  .f-row-price {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: #1F2A1C;
+  }
+  .f-footer {
+    margin-top: auto;
+    padding: 22px 28px;
+    background: #1F2A1C;
+    color: #F1E7CF;
+    text-align: center;
+    font-family: "Cormorant Garamond", serif;
+  }
+  .f-footer .crest {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    color: #D4B665;
+    font-variant: small-caps;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+  .f-footer .meta {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(241,231,207,0.78);
+  }
+
+  /* Stack on narrow screens */
+  @media (max-width: 1280px) {
+    .canvas { grid-template-columns: 1fr; max-width: 600px; }
+    .screen { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-intro">
+  <div class="eyebrow">Hot N Nice · Direction Exploration v2</div>
+  <h1>Substantial restraint — <em>three more directions</em></h1>
+  <p>
+    v1 didn't land. These three sit in the zone B leaned toward — quiet, grown-up, not playful — but each shows more substance: hero <em>plus</em> a today's-kitchen section <em>plus</em> a footer, so you can feel each direction's rhythm rather than just its first impression. Real logo, real menu, real food.
+  </p>
+</section>
+
+<main class="canvas">
+
+  <!-- ============== DIRECTION D — Cereal Magazine Editorial ============== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">D · Editorial · Magazine pacing</span>
+      <h2 class="direction-title">Cereal Magazine Editorial</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Cereal magazine (Rosa Park / Rich Stapleton) · Magazine B · Apartment Therapy editorial.
+        <br><b>DNA:</b> Precise sans + warm serif. Big editorial photography. Captions, rules, deliberate hierarchy. One muted rust accent.
+      </p>
+    </header>
+
+    <div class="screen screen-d">
+      <div class="d-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="d-nav"><span>Menu</span><span>Order</span><span>About</span><span>Contact</span></nav>
+      </div>
+
+      <div class="d-hero">
+        <div class="d-hero-meta">
+          <span>№ 11 · Monday May 11</span>
+          <span>Middlesbrough · 5★ FSA</span>
+        </div>
+
+        <h1>Italian and West African home cooking, <em>delivered hot</em> across Middlesbrough.</h1>
+
+        <img class="d-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+
+        <div class="d-hero-caption">
+          <div>
+            <div class="label">Today's pick</div>
+            <div>Jollof &amp; Plantain<br>£10</div>
+          </div>
+          <div class="body">
+            Fragrant tomato-based jollof rice with your choice of chicken, beef or fish, alongside caramelised fried plantain. A 7-minute drive from kitchen to your door once it's cooked. No frozen meals.
+          </div>
+        </div>
+
+        <div class="d-cta-row">
+          <a class="d-cta" href="#">Order now</a>
+          <a class="d-cta-secondary" href="#">See today's menu</a>
+        </div>
+      </div>
+
+      <div class="d-section">
+        <div class="d-section-head">
+          <h2>Today's <em>kitchen</em></h2>
+          <span class="meta">Tue – Sun · 12 – 8pm</span>
+        </div>
+
+        <div class="d-grid">
+          <div class="d-card">
+            <img src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+            <span class="num">№ 02 · Pasta</span>
+            <div class="name">Plantain Lasagna</div>
+            <div class="desc">A twist on classic lasagna, layered with sweet ripe plantain, seasoned mince and béchamel.</div>
+            <div class="price">£25</div>
+          </div>
+          <div class="d-card">
+            <img src="../assets/meals/suya.jpeg" alt="Suya sticks">
+            <span class="num">№ 04 · Grill</span>
+            <div class="name">Suya Sticks</div>
+            <div class="desc">Smoky, peppery grilled beef skewers in a bold spice blend, with sliced onions and tomatoes.</div>
+            <div class="price">£5</div>
+          </div>
+          <div class="d-card">
+            <img src="../assets/meals/lasagna-1.png" alt="Lasagna">
+            <span class="num">№ 01 · Pasta</span>
+            <div class="name">Classic Lasagna</div>
+            <div class="desc">Oven-baked pasta layered with rich meat sauce, creamy béchamel, and golden melted cheese.</div>
+            <div class="price">£20</div>
+          </div>
+          <div class="d-card">
+            <img src="../assets/meals/small-chops.jpeg" alt="Small chops platter">
+            <span class="num">№ 07 · Snacks</span>
+            <div class="name">Small Chops Platter</div>
+            <div class="desc">Bite-sized party favourites: puff-puff, samosa, spring rolls, peppered chicken.</div>
+            <div class="price">£25</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-footer">
+        <span>Order by 10am for same-day delivery</span>
+        <span>5★ <b>Food Hygiene</b> · FSA</span>
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Substantial, considered, editorial. Reads like a magazine you'd subscribe to. Logo sits as a publisher's mark. The "premium-considered" choice.
+    </footer>
+  </article>
+
+  <!-- ============== DIRECTION E — Aesop Apothecary Storytelling ============== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">E · Storytelling · Text-led</span>
+      <h2 class="direction-title">Apothecary Storytelling</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Aesop (Marx Design) · Astier de Villatte · Apartamento. Single-typeface discipline.
+        <br><b>DNA:</b> Warm sand + ink. EB Garamond throughout. Italic-rich, justified text. Reads like a typewritten note from the kitchen.
+      </p>
+    </header>
+
+    <div class="screen screen-e">
+      <div class="e-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="e-nav"><span>menu</span><span>order</span><span>contact</span></nav>
+      </div>
+
+      <div class="e-hero">
+        <span class="e-eyebrow">Monday, 11th May — a note from the kitchen.</span>
+        <h1>Today, we are cooking <em>jollof, lasagna and suya</em> — for you, for dinner.</h1>
+        <p class="e-body">
+          We are a small home kitchen in Middlesbrough, cooking Italian classics and West African staples from scratch every morning. <b>No frozen meals. No shortcuts.</b> Our pots are on by ten o'clock; what is on the menu today is what we have prepared today. We deliver hot to Middlesbrough, Stockton, Redcar, Thornaby and Billingham, between twelve and eight, Tuesday through Sunday.
+        </p>
+        <img class="e-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+        <span class="e-img-caption">— Jollof rice with chicken &amp; plantain, just before it leaves the kitchen.</span>
+        <div class="e-cta-row">
+          <a class="e-cta" href="#">See today's bill of fare</a>
+          <a class="e-cta-mini" href="#">or message us on WhatsApp</a>
+        </div>
+      </div>
+
+      <div class="e-section">
+        <h2>Today's bill of fare.</h2>
+        <div class="sub">Order by ten o'clock for same-day delivery.</div>
+
+        <div class="e-fare">
+          <div class="e-fare-row">
+            <div>
+              <div class="e-fare-name">Jollof Rice with Protein &amp; Plantain</div>
+              <div class="e-fare-desc">Fragrant tomato-based jollof, with chicken, beef or fish.</div>
+            </div>
+            <div class="e-fare-price">£10</div>
+          </div>
+          <div class="e-fare-row">
+            <div>
+              <div class="e-fare-name">Plantain Lasagna</div>
+              <div class="e-fare-desc">Sweet ripe plantain, seasoned mince, béchamel.</div>
+            </div>
+            <div class="e-fare-price">£25</div>
+          </div>
+          <div class="e-fare-row">
+            <div>
+              <div class="e-fare-name">Roasted Tilapia Platter</div>
+              <div class="e-fare-desc">Whole tilapia marinated and fire-roasted, with sides.</div>
+            </div>
+            <div class="e-fare-price">£25</div>
+          </div>
+          <div class="e-fare-row">
+            <div>
+              <div class="e-fare-name">Suya Sticks</div>
+              <div class="e-fare-desc">Grilled beef skewers in a bold spice blend.</div>
+            </div>
+            <div class="e-fare-price">£5</div>
+          </div>
+          <div class="e-fare-row">
+            <div>
+              <div class="e-fare-name">Edikaikong</div>
+              <div class="e-fare-desc">Leafy green soup with ugu &amp; waterleaf, assorted protein.</div>
+            </div>
+            <div class="e-fare-price">£15</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="e-footer">
+        <div class="e-footer-rule"></div>
+        five-star food hygiene rating from the food standards agency<br>
+        no shortcuts · no frozen meals · just dinner<br>
+        — middlesbrough · stockton · redcar · thornaby · billingham —
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Text-led, considered, almost devotional. Treats the menu as something you read, not scroll. Strong differentiation; rewards customers who pause. Logo reads as a small bookplate.
+    </footer>
+  </article>
+
+  <!-- ============== DIRECTION F — Modern Heritage British ============== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">F · Heritage British · Restaurant</span>
+      <h2 class="direction-title">Modern Heritage British</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Hawksmoor · Daylesford · St. JOHN · Rochelle Canteen · Quality Chop House.
+        <br><b>DNA:</b> Deep forest green + cream + gold. Classical serif (Cormorant). Reads like a quality British food house with proper credentials.
+      </p>
+    </header>
+
+    <div class="screen screen-f">
+      <div class="f-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="f-nav"><span>Menu</span><span>Order</span><span>About</span></nav>
+      </div>
+
+      <div class="f-hero">
+        <img class="f-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+        <div class="f-hero-overlay">
+          <span class="f-eyebrow">A Home Kitchen · Middlesbrough · Est. 2019</span>
+          <h1>Italian &amp; West African,<br>cooked from scratch, <em>delivered hot.</em></h1>
+          <p>No shortcuts. No frozen meals. A five-star kitchen, on its feet from ten o'clock every morning.</p>
+        </div>
+      </div>
+
+      <div class="f-band">
+        <span class="f-band-left">Tue – Sun · 12 – 8pm · Order by 10am for same-day</span>
+        <a class="f-cta" href="#">View Menu</a>
+      </div>
+
+      <div class="f-section">
+        <div class="f-section-head">
+          <h2>The Day's <em>Kitchen</em></h2>
+          <div class="sub">Eleventh of May</div>
+          <span class="ornament"></span>
+        </div>
+
+        <div class="f-list">
+          <div class="f-row">
+            <img src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain-1.png" alt="Jollof rice">
+            <div class="f-row-text">
+              <div class="f-row-name">Jollof Rice with Plantain</div>
+              <div class="f-row-desc">Chicken, beef or fish — your choice.</div>
+            </div>
+            <div class="f-row-price">£10</div>
+          </div>
+          <div class="f-row">
+            <img src="../assets/meals/lasagna-1.png" alt="Lasagna">
+            <div class="f-row-text">
+              <div class="f-row-name">Classic Lasagna</div>
+              <div class="f-row-desc">Oven-baked, béchamel, melted cheese.</div>
+            </div>
+            <div class="f-row-price">£20</div>
+          </div>
+          <div class="f-row">
+            <img src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+            <div class="f-row-text">
+              <div class="f-row-name">Plantain Lasagna</div>
+              <div class="f-row-desc">A house twist — ripe plantain in place of pasta.</div>
+            </div>
+            <div class="f-row-price">£25</div>
+          </div>
+          <div class="f-row">
+            <img src="../assets/meals/roasted-tilapia-fish.jpeg" alt="Roasted tilapia">
+            <div class="f-row-text">
+              <div class="f-row-name">Roasted Tilapia Platter</div>
+              <div class="f-row-desc">Whole fish, marinated, fire-roasted.</div>
+            </div>
+            <div class="f-row-price">£25</div>
+          </div>
+          <div class="f-row">
+            <img src="../assets/meals/suya.jpeg" alt="Suya">
+            <div class="f-row-text">
+              <div class="f-row-name">Suya Sticks</div>
+              <div class="f-row-desc">Spiced grilled beef, onions, tomato.</div>
+            </div>
+            <div class="f-row-price">£5</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="f-footer">
+        <div class="crest">★★★★★ Food Hygiene · Food Standards Agency</div>
+        <div class="meta">Middlesbrough · Stockton-on-Tees · Redcar · Thornaby · Billingham</div>
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Confident, grown-up, British food-house aesthetic. The boldest chromatic choice (deep green + gold). Logo gets a dark backdrop and reads strongest here.
+    </footer>
+  </article>
+
+</main>
+
+</body>
+</html>

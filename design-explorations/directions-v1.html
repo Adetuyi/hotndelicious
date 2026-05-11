@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hot N Nice · Three Visual Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@300;400;500;600;700;800&family=Caveat:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #1a1a1a;
+    color: #f4f4f4;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.45;
+  }
+
+  /* Page intro */
+  .page-intro {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 56px 40px 24px;
+  }
+  .page-intro h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 38px;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+  .page-intro p {
+    font-size: 14px;
+    color: #aaa;
+    max-width: 720px;
+    margin: 0;
+  }
+  .page-intro .meta {
+    display: flex;
+    gap: 18px;
+    font-family: "DM Mono", ui-monospace, monospace;
+    font-size: 11px;
+    color: #777;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 16px;
+  }
+
+  /* Canvas grid */
+  .canvas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 24px auto 80px;
+    padding: 0 40px;
+  }
+  .direction {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .direction-header {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .direction-tag {
+    font-family: "DM Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #999;
+  }
+  .direction-title {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 22px;
+    color: #f4f4f4;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .direction-meta {
+    font-size: 12px;
+    color: #888;
+    line-height: 1.55;
+    margin: 0;
+  }
+  .direction-meta b { color: #ccc; font-weight: 500; }
+
+  .screen {
+    position: relative;
+    aspect-ratio: 9 / 14;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 18px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  .direction-footer {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.55;
+    font-style: italic;
+  }
+
+  /* ========================================================
+     DIRECTION A — Pentagram Hospitality Editorial
+     Cream + ink + terracotta. Big serif display.
+     ======================================================== */
+  .screen-a {
+    background: #F7F0E3;
+    color: #1A1410;
+    padding: 18px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Manrope", system-ui, sans-serif;
+  }
+  .a-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #1A1410;
+  }
+  .a-topbar img { height: 32px; }
+  .a-nav {
+    font-family: "Manrope", sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #1A1410;
+    display: flex;
+    gap: 14px;
+    font-weight: 600;
+  }
+  .a-rule {
+    font-family: "DM Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #B8410E;
+    margin: 16px 0 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .a-headline {
+    font-family: "Fraunces", serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 0.96;
+    letter-spacing: -0.025em;
+    margin: 0 0 14px;
+    color: #1A1410;
+  }
+  .a-headline em {
+    font-style: italic;
+    font-weight: 400;
+    color: #B8410E;
+  }
+  .a-deck {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #4a3f33;
+    margin: 0 0 16px;
+    max-width: 90%;
+  }
+  .a-hero-img {
+    width: calc(100% + 40px);
+    margin-left: -20px;
+    margin-right: -20px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+  }
+  .a-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 16px;
+  }
+  .a-cta {
+    display: inline-block;
+    background: #1A1410;
+    color: #F7F0E3;
+    font-family: "Manrope", sans-serif;
+    font-weight: 600;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 11px 18px;
+    text-decoration: none;
+  }
+  .a-cta-secondary {
+    font-family: "Manrope", sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A1410;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+  .a-trust {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid #d9cdb8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 10px;
+    color: #4a3f33;
+    font-family: "Manrope", sans-serif;
+    letter-spacing: 0.06em;
+  }
+  .a-trust b { color: #B8410E; font-weight: 700; letter-spacing: 0.04em; }
+
+  /* ========================================================
+     DIRECTION B — Warm Hara Restraint
+     Linen + soft brown + tiny type. Generous whitespace.
+     ======================================================== */
+  .screen-b {
+    background: #EFE7D8;
+    color: #2a221b;
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    font-family: "EB Garamond", "Times New Roman", serif;
+  }
+  .b-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+  .b-topbar img { height: 30px; opacity: 0.92; }
+  .b-nav {
+    font-family: "EB Garamond", serif;
+    font-size: 11px;
+    color: #6b5c4a;
+    font-style: italic;
+    letter-spacing: 0.02em;
+  }
+  .b-nav span { margin-left: 14px; }
+  .b-eyebrow {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #8a6b3f;
+    margin: 24px 0 16px;
+    text-align: center;
+    letter-spacing: 0.02em;
+  }
+  .b-headline {
+    font-family: "EB Garamond", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 28px;
+    line-height: 1.25;
+    color: #2a221b;
+    margin: 0 0 20px;
+    text-align: center;
+    letter-spacing: -0.01em;
+  }
+  .b-hero-img {
+    width: 70%;
+    margin: 12px auto 22px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    filter: saturate(0.92);
+  }
+  .b-caption {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #6b5c4a;
+    text-align: center;
+    margin: 0 0 28px;
+    line-height: 1.5;
+  }
+  .b-cta-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+  }
+  .b-cta {
+    font-family: "EB Garamond", serif;
+    font-size: 13px;
+    color: #2a221b;
+    text-decoration: none;
+    border-bottom: 1px solid #8a6b3f;
+    padding-bottom: 2px;
+    letter-spacing: 0.04em;
+  }
+  .b-cta-mini {
+    font-family: "EB Garamond", serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #6b5c4a;
+    text-decoration: none;
+  }
+  .b-footer {
+    margin-top: auto;
+    padding-top: 28px;
+    text-align: center;
+    font-family: "EB Garamond", serif;
+    font-size: 10px;
+    color: #8a6b3f;
+    line-height: 1.7;
+    letter-spacing: 0.04em;
+  }
+  .b-footer-rule {
+    width: 24px;
+    height: 1px;
+    background: #8a6b3f;
+    margin: 0 auto 10px;
+    opacity: 0.5;
+  }
+
+  /* ========================================================
+     DIRECTION C — Editorial Personality
+     Cream + terracotta + olive. Display serif + hand-script.
+     ======================================================== */
+  .screen-c {
+    background: #F4E8D0;
+    color: #2B1810;
+    padding: 18px 20px 22px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Manrope", system-ui, sans-serif;
+    position: relative;
+  }
+  .c-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .c-topbar img { height: 44px; }
+  .c-nav {
+    font-family: "Manrope", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    color: #2B1810;
+    display: flex;
+    gap: 12px;
+  }
+  .c-nav a {
+    color: #2B1810;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 2px;
+  }
+  .c-nav a.active::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -3px;
+    height: 5px;
+    background: #C0451E;
+    opacity: 0.35;
+    border-radius: 50%;
+    transform: rotate(-1deg);
+  }
+  .c-greeting {
+    font-family: "Caveat", cursive;
+    font-size: 17px;
+    color: #7A8438;
+    margin: 6px 0 2px;
+    transform: rotate(-1deg);
+    display: inline-block;
+  }
+  .c-headline {
+    font-family: "Fraunces", serif;
+    font-weight: 700;
+    font-size: 38px;
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    color: #2B1810;
+    margin: 0 0 6px;
+  }
+  .c-headline em {
+    font-family: "Fraunces", serif;
+    font-style: italic;
+    font-weight: 500;
+    color: #C0451E;
+    font-size: 36px;
+  }
+  .c-caption {
+    font-family: "Manrope", sans-serif;
+    font-size: 12px;
+    line-height: 1.55;
+    color: #4a3a2c;
+    margin: 12px 0 16px;
+    max-width: 95%;
+  }
+  .c-caption b { color: #2B1810; font-weight: 600; }
+  .c-photo-row {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .c-photo-big {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  .c-photo-stack { display: flex; flex-direction: column; gap: 8px; }
+  .c-photo-small {
+    width: 100%;
+    height: 71px;
+    object-fit: cover;
+  }
+  .c-callout {
+    position: relative;
+    font-family: "Caveat", cursive;
+    font-size: 14px;
+    color: #C0451E;
+    line-height: 1;
+    margin: 4px 0 0 4px;
+  }
+  .c-callout::before {
+    content: "↗";
+    margin-right: 4px;
+  }
+  .c-cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: auto;
+    padding-top: 14px;
+  }
+  .c-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #C0451E;
+    color: #F4E8D0;
+    font-family: "Manrope", sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 12px 18px;
+    text-decoration: none;
+    border-radius: 2px;
+  }
+  .c-cta-secondary {
+    font-family: "Caveat", cursive;
+    font-size: 16px;
+    color: #7A8438;
+    text-decoration: none;
+    position: relative;
+  }
+  .c-cta-secondary::after {
+    content: "";
+    position: absolute;
+    left: -2px;
+    right: -2px;
+    bottom: -4px;
+    height: 2px;
+    background: #7A8438;
+    border-radius: 50%;
+    transform: rotate(-1deg);
+  }
+  .c-trust {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: "Caveat", cursive;
+    font-size: 13px;
+    color: #7A8438;
+    transform: rotate(4deg);
+    text-align: center;
+    line-height: 1;
+  }
+  .c-trust b { display: block; font-family: "Fraunces", serif; font-style: italic; font-size: 26px; color: #C0451E; line-height: 1; font-weight: 600; }
+
+  /* Responsive: stack on small screens (so it still works on the user's screen if narrow) */
+  @media (max-width: 1100px) {
+    .canvas { grid-template-columns: 1fr; }
+    .screen { aspect-ratio: 16 / 11; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-intro">
+  <h1>Hot N Nice Delicacies · Three Visual Directions</h1>
+  <p>Each treatment uses the real logo, real menu, real food photography. Same content — different visual DNA. Pick one to deepen, or mix elements from across the three.</p>
+  <div class="meta">
+    <span>Phase · Direction Exploration v1</span>
+    <span>Date · 2026-05-11</span>
+    <span>Brand · Hot N Nice Delicacies (Middlesbrough)</span>
+  </div>
+</section>
+
+<main class="canvas">
+
+  <!-- ========== DIRECTION A ========== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">A · Information Architecture</span>
+      <h2 class="direction-title">Pentagram-style Hospitality Editorial</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Pentagram (Paula Scher / Michael Bierut) · Mucca Design (Sant Ambroeus, Balthazar).
+        <br><b>DNA:</b> Cookbook editorial. Big serif. Editorial whitespace. Single warm accent. Type-as-content.
+      </p>
+    </header>
+
+    <div class="screen screen-a">
+      <div class="a-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="a-nav">
+          <span>Menu</span><span>Order</span><span>About</span>
+        </nav>
+      </div>
+
+      <div class="a-rule">
+        <span>№ 01 — Today's Kitchen</span>
+        <span>Tue – Sun · 12–8pm</span>
+      </div>
+
+      <h3 class="a-headline">Made with love, <em>delivered hot</em> to your door.</h3>
+
+      <p class="a-deck">Italian and West African home cooking from a 5-star kitchen in Middlesbrough. No shortcuts. No frozen meals. Just dinner.</p>
+
+      <img class="a-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+
+      <div class="a-cta-row">
+        <a class="a-cta" href="#">Order now →</a>
+        <a class="a-cta-secondary" href="#">See full menu</a>
+      </div>
+
+      <div class="a-trust">
+        <span>5★ <b>Food Hygiene Rating</b> · Food Standards Agency</span>
+        <span>Middlesbrough · Stockton · Redcar</span>
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Confident, grown-up, premium-casual. Logo sits naturally as a "publisher's seal." Safe-premium choice; very low risk of feeling generic.
+    </footer>
+  </article>
+
+  <!-- ========== DIRECTION B ========== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">B · Eastern Philosophy (warm reading)</span>
+      <h2 class="direction-title">Hara-inspired Quiet Restraint</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Kenya Hara (Muji) · Marx Design (Aesop's identity). Read warmly to respect the logo's heritage.
+        <br><b>DNA:</b> Linen palette. Very small italic serif. Round food still-lifes. Almost no UI chrome.
+      </p>
+    </header>
+
+    <div class="screen screen-b">
+      <div class="b-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <span class="b-nav"><span>menu</span><span>order</span><span>contact</span></span>
+      </div>
+
+      <p class="b-eyebrow">tuesday, the eleventh of may.</p>
+
+      <h3 class="b-headline">today, we cook<br>jollof &amp; plantain<br>for you.</h3>
+
+      <img class="b-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain-1.png" alt="Jollof rice still life">
+
+      <p class="b-caption">a quiet kitchen in middlesbrough.<br>five-star hygiene. no frozen meals.</p>
+
+      <div class="b-cta-row">
+        <a class="b-cta" href="#">browse today's menu</a>
+        <a class="b-cta-mini" href="#">or message us on whatsapp →</a>
+      </div>
+
+      <div class="b-footer">
+        <div class="b-footer-rule"></div>
+        delivery · tue – sun · 12 – 8pm<br>
+        order by 10am for same-day
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Maximum differentiation — no UK food-delivery brand reads like this. Risk: existing warm-orange customers may find it cool/aloof. Logo's vintage warmth softens the restraint.
+    </footer>
+  </article>
+
+  <!-- ========== DIRECTION C ========== -->
+  <article class="direction">
+    <header class="direction-header">
+      <span class="direction-tag">C · Avant-garde (warm)</span>
+      <h2 class="direction-title">Editorial Personality</h2>
+      <p class="direction-meta">
+        <b>Refs:</b> Marina Willer (Pentagram London) · Mirko Borsche · Snask · Studio Sutherl&.
+        <br><b>DNA:</b> Bold display serif + hand-script accents. Warmer chromatic palette. Real-person voice.
+      </p>
+    </header>
+
+    <div class="screen screen-c">
+      <div class="c-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="c-nav">
+          <a href="#" class="active">today</a>
+          <a href="#">menu</a>
+          <a href="#">about</a>
+        </nav>
+      </div>
+
+      <span class="c-greeting">hello, middlesbrough —</span>
+      <h3 class="c-headline">Made with love,<br><em>delivered hot.</em></h3>
+
+      <p class="c-caption">
+        From our family kitchen — <b>no shortcuts, no frozen meals.</b> Italian classics &amp; West African home cooking, made fresh, brought to your door before dinner cools.
+      </p>
+
+      <div class="c-photo-row">
+        <img class="c-photo-big" src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+        <div class="c-photo-stack">
+          <img class="c-photo-small" src="../assets/meals/suya.jpeg" alt="Suya">
+          <img class="c-photo-small" src="../assets/meals/small-chops.jpeg" alt="Small chops platter">
+        </div>
+      </div>
+      <span class="c-callout">new this week — plantain lasagna</span>
+
+      <div class="c-cta-row">
+        <a class="c-cta" href="#">See today's menu</a>
+        <a class="c-cta-secondary" href="#">or text us</a>
+      </div>
+
+      <div class="c-trust">
+        <b>5★</b>
+        food hygiene<br>since day one
+      </div>
+    </div>
+
+    <footer class="direction-footer">
+      Personality-led, warm, distinctive. Amplifies what the logo is already doing. The "expressive but grown-up" choice; needs careful craft to avoid feeling busy.
+    </footer>
+  </article>
+
+</main>
+
+</body>
+</html>
