@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hot N Nice · v3 — Heritage British, Three Palettes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: #161513;
+    color: #f4f0e8;
+    font-family: "Geist", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.45;
+  }
+
+  /* Page intro */
+  .page-intro {
+    max-width: 1480px;
+    margin: 0 auto;
+    padding: 56px 40px 24px;
+  }
+  .page-intro .eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a89c84;
+    margin-bottom: 14px;
+  }
+  .page-intro h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 40px;
+    letter-spacing: -0.005em;
+    margin: 0 0 14px;
+    color: #f4f0e8;
+  }
+  .page-intro h1 em { font-style: italic; color: #d4b88a; font-weight: 400; }
+  .page-intro p {
+    font-family: "Geist", sans-serif;
+    font-size: 13.5px;
+    color: #b5ab97;
+    max-width: 780px;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  /* Canvas grid — 3 variants side by side */
+  .canvas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1480px;
+    margin: 28px auto 80px;
+    padding: 0 40px;
+    align-items: start;
+  }
+  .variant { display: flex; flex-direction: column; gap: 16px; }
+  .variant-header { display: flex; flex-direction: column; gap: 6px; }
+  .variant-tag {
+    font-family: "Geist Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #a89c84;
+  }
+  .variant-title {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 24px;
+    color: #f4f0e8;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .variant-title em { font-style: italic; color: #d4b88a; font-weight: 400; }
+  .variant-meta {
+    font-family: "Geist", sans-serif;
+    font-size: 12px;
+    color: #908874;
+    line-height: 1.6;
+    margin: 0;
+  }
+  .variant-meta b { color: #d6cdb8; font-weight: 500; }
+  .swatch-row { display: flex; gap: 6px; margin-top: 6px; }
+  .swatch { width: 22px; height: 22px; border-radius: 50%; box-shadow: 0 0 0 1px rgba(255,255,255,0.05); }
+  .variant-footer { font-family: "Geist", sans-serif; font-size: 11px; color: #908874; line-height: 1.55; font-style: italic; }
+
+  /* ============================================================
+     SHARED SCREEN STRUCTURE (palette via CSS variables)
+     ============================================================ */
+  .screen {
+    position: relative;
+    min-height: 1220px;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 22px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  /* --- Top bar (dark band) --- */
+  .h-topbar {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 16px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .h-topbar img {
+    height: 32px;
+    filter: drop-shadow(0 0 0 currentColor);
+  }
+  .h-nav {
+    display: flex;
+    gap: 22px;
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 13px;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: var(--cream);
+  }
+  .h-issue {
+    font-family: "Geist Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* --- Hero --- */
+  .h-hero {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+  }
+  .h-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(0.74) saturate(1.05);
+  }
+  .h-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+      color-mix(in srgb, var(--dark) 8%, transparent) 0%,
+      color-mix(in srgb, var(--dark) 50%, transparent) 55%,
+      color-mix(in srgb, var(--dark) 88%, transparent) 100%);
+    color: var(--cream);
+    padding: 26px 26px 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .h-hero-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .h-eyebrow {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 12px;
+    font-variant: small-caps;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+  }
+  .h-vol {
+    font-family: "Geist Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    text-align: right;
+  }
+  .h-headline {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.02;
+    letter-spacing: -0.005em;
+    color: var(--cream);
+    margin: 0 0 12px;
+  }
+  .h-headline em { font-style: italic; color: var(--accent); font-weight: 400; }
+  .h-deck {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgba(244, 234, 208, 0.85);
+    margin: 0;
+    max-width: 92%;
+    line-height: 1.45;
+  }
+
+  /* --- Day band --- */
+  .h-band {
+    background: var(--dark);
+    color: var(--cream);
+    padding: 17px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .h-band-meta {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(244, 234, 208, 0.85);
+  }
+  .h-band-meta b {
+    font-style: normal;
+    font-variant: small-caps;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-weight: 500;
+    margin-right: 6px;
+  }
+  .h-cta {
+    background: var(--accent);
+    color: var(--dark);
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 13px;
+    padding: 9px 18px;
+    font-variant: small-caps;
+    letter-spacing: 0.16em;
+    text-decoration: none;
+  }
+
+  /* --- Bill of Fare section --- */
+  .h-section {
+    padding: 36px 26px 24px;
+    flex: 1;
+  }
+  .h-section-eyebrow {
+    font-family: "Geist Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .h-section-title {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1;
+    color: var(--ink);
+    text-align: center;
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .h-section-title em { font-style: italic; font-weight: 400; }
+  .h-section-sub {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--ink) 65%, transparent);
+    text-align: center;
+    margin: 4px 0 0;
+  }
+  .h-ornament {
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+    margin: 16px auto 26px;
+    opacity: 0.7;
+  }
+
+  .h-fare { display: flex; flex-direction: column; }
+  .h-fare-row {
+    display: grid;
+    grid-template-columns: 110px 1fr;
+    align-items: start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px dashed color-mix(in srgb, var(--ink) 22%, transparent);
+  }
+  .h-fare-row:last-child { border-bottom: none; }
+  .h-fare-img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    display: block;
+  }
+  .h-fare-content { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: baseline; }
+  .h-fare-text { display: flex; flex-direction: column; gap: 4px; }
+  .h-fare-num {
+    font-family: "Geist Mono", monospace;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .h-fare-name {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.1;
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.005em;
+  }
+  .h-fare-desc {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: color-mix(in srgb, var(--ink) 72%, transparent);
+    line-height: 1.45;
+    margin: 2px 0 0;
+  }
+  .h-fare-price {
+    font-family: "Cormorant Garamond", serif;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--ink);
+    white-space: nowrap;
+    padding-top: 16px;
+  }
+
+  /* --- Footer --- */
+  .h-footer {
+    margin-top: auto;
+    padding: 22px 26px;
+    background: var(--dark);
+    color: var(--cream);
+    text-align: center;
+  }
+  .h-footer-crest {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 13px;
+    color: var(--accent);
+    font-variant: small-caps;
+    letter-spacing: 0.18em;
+    margin-bottom: 6px;
+  }
+  .h-footer-areas {
+    font-family: "Cormorant Garamond", serif;
+    font-style: italic;
+    font-size: 13px;
+    color: rgba(244, 234, 208, 0.78);
+  }
+
+  /* ============================================================
+     PALETTE α — Burgundy & Cream + Muted Gold
+     ============================================================ */
+  .screen-alpha {
+    --cream: #F4EAD0;
+    --dark: #5C1A1B;
+    --ink: #2A1A1A;
+    --accent: #C9A258;
+  }
+
+  /* ============================================================
+     PALETTE β — Walnut & Cream + Bronze
+     ============================================================ */
+  .screen-beta {
+    --cream: #F1E5CD;
+    --dark: #2D1F18;
+    --ink: #2D1F18;
+    --accent: #A56F40;
+  }
+
+  /* ============================================================
+     PALETTE γ — Warm Charcoal & Cream + Paprika
+     ============================================================ */
+  .screen-gamma {
+    --cream: #F0E8D2;
+    --dark: #1F1B17;
+    --ink: #1F1B17;
+    --accent: #B85A30;
+  }
+
+  /* Stack on narrow screens */
+  @media (max-width: 1280px) {
+    .canvas { grid-template-columns: 1fr; max-width: 600px; }
+    .screen { min-height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<section class="page-intro">
+  <div class="eyebrow">Hot N Nice · Direction Exploration v3</div>
+  <h1>Heritage British — <em>three palettes, no green</em></h1>
+  <p>
+    Same locked DNA across all three: F's full-bleed hero, E's italic "Today's Bill of Fare", D's substantial menu cards with real food photography. The only variable is the chromatic system — three non-green palettes, each with its own mood. Real logo, real menu, real Middlesbrough.
+  </p>
+</section>
+
+<main class="canvas">
+
+  <!-- ============== PALETTE α — Burgundy & Cream ============== -->
+  <article class="variant">
+    <header class="variant-header">
+      <span class="variant-tag">α · Refined Dining</span>
+      <h2 class="variant-title">Burgundy &amp; <em>Cream</em></h2>
+      <p class="variant-meta">
+        <b>Mood:</b> St. JOHN / Quality Chop House. Wine-dark sophistication. Most "restaurant"-feeling of the three.
+      </p>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#F4EAD0" title="Cream"></div>
+        <div class="swatch" style="background:#5C1A1B" title="Burgundy"></div>
+        <div class="swatch" style="background:#C9A258" title="Gold"></div>
+        <div class="swatch" style="background:#2A1A1A" title="Ink"></div>
+      </div>
+    </header>
+
+    <div class="screen screen-alpha">
+      <div class="h-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="h-nav"><span>Menu</span><span>Order</span><span>About</span></nav>
+      </div>
+
+      <div class="h-hero">
+        <img class="h-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+        <div class="h-hero-overlay">
+          <div class="h-hero-top">
+            <span class="h-eyebrow">A Home Kitchen · Middlesbrough · Est. 2019</span>
+            <span class="h-vol">№ 11 · 11.05.26</span>
+          </div>
+          <div>
+            <h1 class="h-headline">Italian &amp; West African,<br>cooked from scratch, <em>delivered hot.</em></h1>
+            <p class="h-deck">No shortcuts. No frozen meals. A five-star kitchen, on its feet from ten o'clock every morning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-band">
+        <span class="h-band-meta"><b>Tue – Sun</b>12 – 8pm · Order by 10am for same-day</span>
+        <a class="h-cta" href="#">View Menu</a>
+      </div>
+
+      <div class="h-section">
+        <div class="h-section-eyebrow">Vol. 01 · The Eleventh of May</div>
+        <h2 class="h-section-title">Today's <em>Bill of Fare</em></h2>
+        <p class="h-section-sub">Cooked this morning · Delivered hot</p>
+        <span class="h-ornament"></span>
+
+        <div class="h-fare">
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain-1.png" alt="Jollof rice with plantain">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 01 · Rice</span>
+                <h3 class="h-fare-name">Jollof Rice with Plantain</h3>
+                <p class="h-fare-desc">Fragrant tomato-based jollof with your choice of chicken, beef or fish, alongside caramelised plantain.</p>
+              </div>
+              <div class="h-fare-price">£10</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 02 · Pasta</span>
+                <h3 class="h-fare-name">Plantain Lasagna</h3>
+                <p class="h-fare-desc">A house twist on classic lasagna, layered with sweet ripe plantain, seasoned mince and béchamel.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/roasted-tilapia-fish.jpeg" alt="Roasted tilapia">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 03 · Grill</span>
+                <h3 class="h-fare-name">Roasted Tilapia Platter</h3>
+                <p class="h-fare-desc">Whole tilapia marinated in peppers and spices, fire-roasted to a crispy finish with sides.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/suya.jpeg" alt="Suya sticks">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 04 · Grill</span>
+                <h3 class="h-fare-name">Suya Sticks</h3>
+                <p class="h-fare-desc">Smoky, peppery grilled beef skewers in a bold spice blend, with sliced onions and tomatoes.</p>
+              </div>
+              <div class="h-fare-price">£5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-footer">
+        <div class="h-footer-crest">★★★★★ Food Hygiene · Food Standards Agency</div>
+        <div class="h-footer-areas">Middlesbrough · Stockton-on-Tees · Redcar · Thornaby · Billingham</div>
+      </div>
+    </div>
+
+    <footer class="variant-footer">
+      Most "restaurant-formal" of the three. The burgundy reads premium-dining; gold accent adds quiet luxury. The logo's crimson sits inside the palette family, not against it.
+    </footer>
+  </article>
+
+  <!-- ============== PALETTE β — Walnut & Cream ============== -->
+  <article class="variant">
+    <header class="variant-header">
+      <span class="variant-tag">β · Home Dining Room</span>
+      <h2 class="variant-title">Walnut &amp; <em>Cream</em></h2>
+      <p class="variant-meta">
+        <b>Mood:</b> Hawksmoor interior / Daylesford. Warmest option. Reads "family kitchen" more than "restaurant".
+      </p>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#F1E5CD" title="Cream"></div>
+        <div class="swatch" style="background:#2D1F18" title="Walnut"></div>
+        <div class="swatch" style="background:#A56F40" title="Bronze"></div>
+        <div class="swatch" style="background:#2D1F18" title="Ink"></div>
+      </div>
+    </header>
+
+    <div class="screen screen-beta">
+      <div class="h-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="h-nav"><span>Menu</span><span>Order</span><span>About</span></nav>
+      </div>
+
+      <div class="h-hero">
+        <img class="h-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+        <div class="h-hero-overlay">
+          <div class="h-hero-top">
+            <span class="h-eyebrow">A Home Kitchen · Middlesbrough · Est. 2019</span>
+            <span class="h-vol">№ 11 · 11.05.26</span>
+          </div>
+          <div>
+            <h1 class="h-headline">Italian &amp; West African,<br>cooked from scratch, <em>delivered hot.</em></h1>
+            <p class="h-deck">No shortcuts. No frozen meals. A five-star kitchen, on its feet from ten o'clock every morning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-band">
+        <span class="h-band-meta"><b>Tue – Sun</b>12 – 8pm · Order by 10am for same-day</span>
+        <a class="h-cta" href="#">View Menu</a>
+      </div>
+
+      <div class="h-section">
+        <div class="h-section-eyebrow">Vol. 01 · The Eleventh of May</div>
+        <h2 class="h-section-title">Today's <em>Bill of Fare</em></h2>
+        <p class="h-section-sub">Cooked this morning · Delivered hot</p>
+        <span class="h-ornament"></span>
+
+        <div class="h-fare">
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain-1.png" alt="Jollof rice with plantain">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 01 · Rice</span>
+                <h3 class="h-fare-name">Jollof Rice with Plantain</h3>
+                <p class="h-fare-desc">Fragrant tomato-based jollof with your choice of chicken, beef or fish, alongside caramelised plantain.</p>
+              </div>
+              <div class="h-fare-price">£10</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 02 · Pasta</span>
+                <h3 class="h-fare-name">Plantain Lasagna</h3>
+                <p class="h-fare-desc">A house twist on classic lasagna, layered with sweet ripe plantain, seasoned mince and béchamel.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/roasted-tilapia-fish.jpeg" alt="Roasted tilapia">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 03 · Grill</span>
+                <h3 class="h-fare-name">Roasted Tilapia Platter</h3>
+                <p class="h-fare-desc">Whole tilapia marinated in peppers and spices, fire-roasted to a crispy finish with sides.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/suya.jpeg" alt="Suya sticks">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 04 · Grill</span>
+                <h3 class="h-fare-name">Suya Sticks</h3>
+                <p class="h-fare-desc">Smoky, peppery grilled beef skewers in a bold spice blend, with sliced onions and tomatoes.</p>
+              </div>
+              <div class="h-fare-price">£5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-footer">
+        <div class="h-footer-crest">★★★★★ Food Hygiene · Food Standards Agency</div>
+        <div class="h-footer-areas">Middlesbrough · Stockton-on-Tees · Redcar · Thornaby · Billingham</div>
+      </div>
+    </div>
+
+    <footer class="variant-footer">
+      Warmest of the three. Walnut + cream + bronze reads "Sunday dinner table". Best chromatic complement to the logo's existing crimson + orange. The "home-kitchen" choice.
+    </footer>
+  </article>
+
+  <!-- ============== PALETTE γ — Charcoal Cream + Paprika ============== -->
+  <article class="variant">
+    <header class="variant-header">
+      <span class="variant-tag">γ · Modernist Heritage</span>
+      <h2 class="variant-title">Charcoal Cream &amp; <em>Paprika</em></h2>
+      <p class="variant-meta">
+        <b>Mood:</b> Rochelle Canteen / Apartment Therapy. Most timeless. Paprika brings the warmth, charcoal holds the structure.
+      </p>
+      <div class="swatch-row">
+        <div class="swatch" style="background:#F0E8D2" title="Cream"></div>
+        <div class="swatch" style="background:#1F1B17" title="Charcoal"></div>
+        <div class="swatch" style="background:#B85A30" title="Paprika"></div>
+        <div class="swatch" style="background:#1F1B17" title="Ink"></div>
+      </div>
+    </header>
+
+    <div class="screen screen-gamma">
+      <div class="h-topbar">
+        <img src="../public/logo.png" alt="Hot N Nice Delicacies">
+        <nav class="h-nav"><span>Menu</span><span>Order</span><span>About</span></nav>
+      </div>
+
+      <div class="h-hero">
+        <img class="h-hero-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain.jpeg" alt="Jollof rice with grilled chicken and plantain">
+        <div class="h-hero-overlay">
+          <div class="h-hero-top">
+            <span class="h-eyebrow">A Home Kitchen · Middlesbrough · Est. 2019</span>
+            <span class="h-vol">№ 11 · 11.05.26</span>
+          </div>
+          <div>
+            <h1 class="h-headline">Italian &amp; West African,<br>cooked from scratch, <em>delivered hot.</em></h1>
+            <p class="h-deck">No shortcuts. No frozen meals. A five-star kitchen, on its feet from ten o'clock every morning.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-band">
+        <span class="h-band-meta"><b>Tue – Sun</b>12 – 8pm · Order by 10am for same-day</span>
+        <a class="h-cta" href="#">View Menu</a>
+      </div>
+
+      <div class="h-section">
+        <div class="h-section-eyebrow">Vol. 01 · The Eleventh of May</div>
+        <h2 class="h-section-title">Today's <em>Bill of Fare</em></h2>
+        <p class="h-section-sub">Cooked this morning · Delivered hot</p>
+        <span class="h-ornament"></span>
+
+        <div class="h-fare">
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/jollof-rice-with-protein-of-choice-and-plantain-1.png" alt="Jollof rice with plantain">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 01 · Rice</span>
+                <h3 class="h-fare-name">Jollof Rice with Plantain</h3>
+                <p class="h-fare-desc">Fragrant tomato-based jollof with your choice of chicken, beef or fish, alongside caramelised plantain.</p>
+              </div>
+              <div class="h-fare-price">£10</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/plantain-lasagna.jpeg" alt="Plantain lasagna">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 02 · Pasta</span>
+                <h3 class="h-fare-name">Plantain Lasagna</h3>
+                <p class="h-fare-desc">A house twist on classic lasagna, layered with sweet ripe plantain, seasoned mince and béchamel.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/roasted-tilapia-fish.jpeg" alt="Roasted tilapia">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 03 · Grill</span>
+                <h3 class="h-fare-name">Roasted Tilapia Platter</h3>
+                <p class="h-fare-desc">Whole tilapia marinated in peppers and spices, fire-roasted to a crispy finish with sides.</p>
+              </div>
+              <div class="h-fare-price">£25</div>
+            </div>
+          </div>
+          <div class="h-fare-row">
+            <img class="h-fare-img" src="../assets/meals/suya.jpeg" alt="Suya sticks">
+            <div class="h-fare-content">
+              <div class="h-fare-text">
+                <span class="h-fare-num">№ 04 · Grill</span>
+                <h3 class="h-fare-name">Suya Sticks</h3>
+                <p class="h-fare-desc">Smoky, peppery grilled beef skewers in a bold spice blend, with sliced onions and tomatoes.</p>
+              </div>
+              <div class="h-fare-price">£5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="h-footer">
+        <div class="h-footer-crest">★★★★★ Food Hygiene · Food Standards Agency</div>
+        <div class="h-footer-areas">Middlesbrough · Stockton-on-Tees · Redcar · Thornaby · Billingham</div>
+      </div>
+    </div>
+
+    <footer class="variant-footer">
+      Most timeless. Charcoal holds the architectural restraint of heritage British, paprika brings warmth and complements the logo. Reads "considered editorial" more than "dining room".
+    </footer>
+  </article>
+
+</main>
+
+</body>
+</html>
